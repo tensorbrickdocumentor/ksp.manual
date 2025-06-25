@@ -1,218 +1,360 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Integration Guide | Documentation</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <main>
-        <template data-content>
-        <div class="content-container">
-            <header class="content-header">
-                <h1>System Integration Guide</h1>
-                <p class="subtitle">Connect our platform with your existing tools and services</p>
-            </header>
-
-            <div class="content-card">
-                <img src="https://images.unsplash.com/photo-1556761175-593847b3a9d2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="API Integration Dashboard Screenshot">
-                <div class="card-body">
-                    <h2>1. API Integration</h2>
-                    <p>Our comprehensive **REST API** allows you to connect with virtually any system and build custom integrations tailored to your specific needs. This section guides you through the core concepts and steps for leveraging our API.</p>
-
-                    <div class="feature-grid">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3>Developer Friendly</h3>
-                            <p>Access clear, concise **documentation**, extensive **code samples** in 5 popular languages, and an interactive **API explorer** to make your integration process smooth and straightforward.</p>
-                            <h4>How to Access API Documentation:</h4>
-                            <ol>
-                                <li>Navigate to the **Developer Portal** from your dashboard.</li>
-                                <li>Click on the **"API Reference"** link in the left-hand menu.</li>
-                                <li>Select your preferred language for code samples.</li>
-                            </ol>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <h3>Secure Authentication</h3>
-                            <p>We support **OAuth 2.0** for robust, secure access and **API Key** options with granular permissions, ensuring your sensitive data remains protected at all times.</p>
-                            <h4>Generating an API Key:</h4>
-                            <ol>
-                                <li>Go to **"Settings"** in your account.</li>
-                                <li>Select **"API & Integrations"**.</li>
-                                <li>Click **"Generate New API Key"** and set appropriate permissions.</li>
-                                <li>**Important:** Copy your API key immediately as it will not be shown again.</li>
-                            </ol>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <h3>Webhook Support</h3>
-                            <p>Set up webhooks to receive **real-time notifications** when important events (like new data entries or status changes) occur within our system, enabling instant actions in your connected applications.</p>
-                            <h4>Configuring a Webhook:</h4>
-                            <ol>
-                                <li>In the **"API & Integrations"** section, click **"Webhooks"**.</li>
-                                <li>Click **"Add New Webhook"**.</li>
-                                <li>Enter your **Callback URL** and select the **Events** you wish to subscribe to.</li>
-                                <li>Click **"Save Webhook"** to activate.</li>
-                            </ol>
-                        </div>
-                    </div>
-
-                    <h3>Example API Call: Fetching Data</h3>
-                    <p>Here's a basic Python example demonstrating how to make an authenticated GET request to our API:</p>
-                    <div class="code-block">
-                        <pre><code># Example Python API client
-import requests
-
-# Replace with your actual API key
-api_key = "your_api_key_here"
-endpoint = "https://api.yourplatform.com/v1/data/users" # Example endpoint for fetching user data
-
-headers = {
-    "Authorization": f"Bearer {api_key}",
-    "Content-Type": "application/json"
-}
-
-try:
-    response = requests.get(endpoint, headers=headers)
-    response.raise_for_status() # Raises an HTTPError for bad responses (4xx or 5xx)
-    data = response.json()
-    print("API Response:", data)
-except requests.exceptions.HTTPError as err:
-    print(f"HTTP error occurred: {err}")
-except Exception as err:
-    print(f"An error occurred: {err}")</code></pre>
-                    </div>
-                    <p>For more detailed API usage, please refer to our full API Documentation.</p>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Integration Marketplace Screenshot">
-                <div class="card-body">
-                    <h2>2. Pre-built Connectors</h2>
-                    <p>Save significant development time with our growing library of **pre-built integrations** for popular business applications. These connectors offer a quick, code-free way to sync data between your systems.</p>
-
-                    <h3>Popular Integrations:</h3>
-                    <p>Explore some of our most frequently used connectors:</p>
-                    <div class="feature-grid">
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fab fa-salesforce" style="color: #00a1e0;"></i>
-                            </div>
-                            <h3>Salesforce</h3>
-                            <p>Sync leads, contacts, and opportunities.</p>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fab fa-microsoft" style="color: #7fba00;"></i>
-                            </div>
-                            <h3>Microsoft 365</h3>
-                            <p>Integrate with Outlook, Excel, and Teams.</p>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fab fa-google" style="color: #ea4335;"></i>
-                            </div>
-                            <h3>Google Workspace</h3>
-                            <p>Connect with Google Drive, Calendar, and Sheets.</p>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">
-                                <i class="fab fa-slack" style="color: #4a154b;"></i>
-                            </div>
-                            <h3>Slack</h3>
-                            <p>Receive notifications and create workflows.</p>
-                        </div>
-                    </div>
-                    
-                    <h3>Integration Process: Step-by-Step</h3>
-                    <p>Follow these simple steps to activate a pre-built connector:</p>
-                    <ol>
-                        <li>**Access Integration Marketplace:** From your main dashboard, navigate to **"Integrations"** and select **"Browse Connectors"**.
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Screenshot of Integration Marketplace" style="width: 100%; border-radius: 8px; margin-top: 15px; border: 1px solid var(--border-color);">
-                            <p style="font-size: 0.9em; color: var(--light-text); text-align: center; margin-top: 10px;">*Fig 2.1: Locating the Integration Marketplace*</p>
-                        </li>
-                        <li>**Select Your Application:** Choose the application you wish to integrate from the list. Click on its card to view details.
-                            <img src="https://images.unsplash.com/photo-1541701494586-b48be0a41d06?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Screenshot of selecting an application" style="width: 100%; border-radius: 8px; margin-top: 15px; border: 1px solid var(--border-color);">
-                            <p style="font-size: 0.9em; color: var(--light-text); text-align: center; margin-top: 10px;">*Fig 2.2: Choosing an application (e.g., Salesforce)*</p>
-                        </li>
-                        <li>**Authenticate:** Follow the on-screen prompts to authenticate with your credentials for the selected application. This usually involves logging into the third-party service.</li>
-                        <li>**Configure Settings:** Define how data should sync. This includes setting up field mappings (e.g., "Customer Name" in our system maps to "Account Name" in Salesforce) and choosing sync directions (one-way or two-way).
-                            <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Screenshot of configuration settings" style="width: 100%; border-radius: 8px; margin-top: 15px; border: 1px solid var(--border-color);">
-                            <p style="font-size: 0.9em; color: var(--light-text); text-align: center; margin-top: 10px;">*Fig 2.3: Configuring field mappings and sync options*</p>
-                        </li>
-                        <li>**Test and Activate:** Run a test sync to ensure everything is working as expected. Once satisfied, activate the integration.</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Data Import Export Screenshot">
-                <div class="card-body">
-                    <h2>3. Data Import/Export</h2>
-                    <p>Easily **migrate your existing data** into our platform or **extract it** for analysis in other systems. Our flexible tools support various formats and transfer methods to ensure your data is always accessible.</p>
-
-                    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 30px 0;">
-                        <div style="flex: 1; min-width: 280px; background: var(--light-bg); padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid var(--border-color);">
-                            <h3>Supported Formats:</h3>
-                            <p>We support a wide range of common data formats for both import and export:</p>
-                            <ul>
-                                <li><i class="fas fa-file-csv"></i> <strong>CSV (Comma Separated Values):</strong> Ideal for simple tabular data.</li>
-                                <li><i class="fas fa-file-excel"></i> <strong>Excel (XLSX, XLS):</strong> For structured data with multiple sheets.</li>
-                                <li><i class="fas fa-file-code"></i> <strong>JSON (JavaScript Object Notation):</strong> For hierarchical and complex data structures.</li>
-                                <li><i class="fas fa-file-code"></i> <strong>XML (Extensible Markup Language):</strong> Another standard for structured data.</li>
-                                <li><i class="fas fa-database"></i> <strong>SQL Dump:</strong> For full database backups or migrations.</li>
-                            </ul>
-                        </div>
-                        <div style="flex: 1; min-width: 280px; background: var(--light-bg); padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid var(--border-color);">
-                            <h3>Import Options:</h3>
-                            <p>Choose the best method for your data import needs:</p>
-                            <ul>
-                                <li><i class="fas fa-cloud-upload-alt"></i> <strong>Web Interface Upload:</strong> Simple drag-and-drop for smaller files.</li>
-                                <li><i class="fas fa-sync-alt"></i> <strong>SFTP Automated Transfer:</strong> For regular, large-volume data transfers.</li>
-                                <li><i class="fas fa-stream"></i> <strong>API Streaming:</strong> Programmatic import for real-time or very large datasets.</li>
-                                <li><i class="fas fa-envelope"></i> <strong>Email Attachments:</strong> Convenient for automated reports from other systems.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <h3>Importing Data: Step-by-Step</h3>
-                    <ol>
-                        <li>**Prepare Your File:** Ensure your data is correctly formatted (e.g., CSV with proper headers).</li>
-                        <li>**Access Import Tool:** Go to **"Data Management"** in your dashboard and select **"Import Data"**.
-                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0c766d27?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Screenshot of data import tool" style="width: 100%; border-radius: 8px; margin-top: 15px; border: 1px solid var(--border-color);">
-                            <p style="font-size: 0.9em; color: var(--light-text); text-align: center; margin-top: 10px;">*Fig 3.1: Navigating to the Data Import tool*</p>
-                        </li>
-                        <li>**Upload Your File:** Select the file type and upload your data.</li>
-                        <li>**Map Fields:** Our system will attempt to auto-map fields. Review and adjust mappings to ensure data goes into the correct columns.</li>
-                        <li>**Validate and Import:** Run a data validation check. Resolve any errors, then proceed with the import.</li>
-                    </ol>
-
-                    <div class="testimonial">
-                        <p>"We migrated over 50,000 customer records from our legacy system in under an hour using the bulk import tools. The data validation features helped us identify and fix issues before they became problems."</p>
-                        <p class="testimonial-author">— Michael Chen, IT Manager at Retail Solutions Inc.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cta-section">
-                <h2>Need Help With Integration?</h2>
-                <p>Our integration specialists are available to assist with your implementation, from complex API setups to custom pre-built connectors. Don't hesitate to reach out for personalized support!</p>
-                <a href="#" class="cta-button">Contact Integration Support</a>
-            </div>
+<html>
+  <head>
+    <title>External Page 2</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- The content inside this template tag will be loaded -->
+    <template data-content>
+      <div class="content-section">
+        <div class="content-header">
+          <h1>Welcome to the ERP MM User Manual</h1>
+          <p>
+            This manual provides a comprehensive guide to using the Materials
+            Management (MM) module within our ERP system. Learn how to manage
+            procurement, inventory, and warehouse operations efficiently.
+          </p>
         </div>
+
+        <h2>What is ERP Materials Management (MM)?</h2>
+        <p>
+          The **Materials Management (MM)** module is a core component of the
+          ERP system that helps organizations manage their procurement
+          processes, inventory, and material master data. It integrates with
+          other modules like Financial Accounting (FI), Controlling (CO), and
+          Sales and Distribution (SD) to ensure seamless business operations.
+        </p>
+        <p>Key functionalities include:</p>
+        <ul>
+          <li>Procurement Process (Purchasing)</li>
+          <li>Inventory Management</li>
+          <li>Warehouse Management</li>
+          <li>Material Master Data</li>
+          <li>Vendor Master Data</li>
+          <li>Invoice Verification</li>
+        </ul>
+        <div class="image-placeholder">
+          <p>
+            [Image: Overview of ERP MM Modules - Placeholder for a diagram
+            showing the interconnectedness of MM processes]
+          </p>
+        </div>
+        <p class="image-caption">
+          Figure 1: High-level overview of ERP MM functionalities.
+        </p>
+      </div>
+
+      ---
+
+      <div class="content-section">
+        <h2 id="master-data">Master Data in MM</h2>
+        <p>
+          Master data is foundational for all MM processes. Accurate master data
+          ensures smooth transactions and reliable reporting.
+        </p>
+
+        <h3>Material Master (T-code: MM01 / MM02 / MM03)</h3>
+        <p>
+          The Material Master contains all information about a material that an
+          organization procures, produces, stores, and sells.
+        </p>
+        <ol>
+          <li>
+            **Creating a Material (MM01):**
+            <p>
+              Enter T-code **MM01** to create new material master records. You
+              will need to select industry sector and material type, then choose
+              relevant views (e.g., Basic Data, Purchasing, Accounting).
+            </p>
+            <div class="image-placeholder">
+              <p>
+                [Image: MM01 Initial Screen - Placeholder for a screenshot of
+                the MM01 initial screen with material type and industry sector]
+              </p>
+            </div>
+            <p class="image-caption">
+              Figure 2: MM01 - Initial screen for creating a material.
+            </p>
+          </li>
+          <li>
+            **Changing a Material (MM02):**
+            <p>
+              Use **MM02** to modify existing material data, such as changing
+              purchasing data or storage locations.
+            </p>
+          </li>
+          <li>
+            **Displaying a Material (MM03):**
+            <p>
+              Use **MM03** to view material master data without making changes.
+            </p>
+          </li>
+        </ol>
+
+        <h3>
+          Vendor Master (T-code: FK01 / FK02 / FK03 or XK01 / XK02 / XK03)
+        </h3>
+        <p>
+          The Vendor Master contains all information about a vendor (supplier)
+          with whom your organization conducts business.
+        </p>
+        <ul>
+          <li>
+            **Creating a Vendor (FK01 / XK01):**
+            <p>
+              Use **FK01** (Company Code data only) or **XK01** (Company Code
+              and Purchasing Organization data) to create new vendors.
+            </p>
+          </li>
+          <li>
+            **Changing a Vendor (FK02 / XK02):**
+            <p>
+              Use **FK02** or **XK02** to modify vendor data, such as bank
+              details or payment terms.
+            </p>
+          </li>
+          <li>
+            **Displaying a Vendor (FK03 / XK03):**
+            <p>Use **FK03** or **XK03** to view vendor master data.</p>
+          </li>
+        </ul>
+        <div class="alert alert-info">
+          <span class="alert-icon">💡</span>
+          <div>
+            <strong>Tip:</strong> Always maintain master data accurately as it
+            directly impacts procurement and inventory processes.
+          </div>
+        </div>
+      </div>
+
+      ---
+
+      <div class="content-section">
+        <h2 id="procurement-process">The Procurement Process</h2>
+        <p>
+          The procurement process in MM covers the entire cycle from identifying
+          a need for materials or services to receiving and paying for them.
+        </p>
+
+        <h3>1. Creating a Purchase Requisition (T-code: ME51N)</h3>
+        <p>
+          A Purchase Requisition (PR) is an internal document requesting the
+          procurement department to procure a certain quantity of a material or
+          service by a certain date.
+        </p>
+        <ol>
+          <li>Enter T-code **ME51N** in the command field.</li>
+          <li>Fill in the material, quantity, delivery date, and plant.</li>
+          <li>
+            Specify the account assignment (e.g., Cost Center) if required.
+          </li>
+          <li>Save the purchase requisition.</li>
+        </ol>
+        <div class="image-placeholder">
+          <p>
+            [Image: ME51N Create PR Screen - Placeholder for a screenshot of the
+            ME51N screen with example PR data entered]
+          </p>
+        </div>
+        <p class="image-caption">
+          Figure 3: ME51N - Creating a Purchase Requisition.
+        </p>
+
+        <h3>2. Creating a Purchase Order (T-code: ME21N)</h3>
+        <p>
+          A Purchase Order (PO) is a formal document issued to a vendor
+          requesting the supply of materials or services.
+        </p>
+        <ol>
+          <li>Enter T-code **ME21N**.</li>
+          <li>
+            Enter vendor details, organizational data (Purchasing Org, Company
+            Code, Purchasing Group).
+          </li>
+          <li>
+            In the item overview, enter material, quantity, plant, and price.
+          </li>
+          <li>(Optional) Refer to a Purchase Requisition if converting.</li>
+          <li>Save the purchase order.</li>
+        </ol>
+        <div class="image-placeholder">
+          <p>
+            [Image: ME21N Create PO Screen - Placeholder for a screenshot of the
+            ME21N screen with example PO data entered]
+          </p>
+        </div>
+        <p class="image-caption">
+          Figure 4: ME21N - Creating a Purchase Order.
+        </p>
+
+        <h3>3. Goods Receipt (T-code: MIGO)</h3>
+        <p>
+          Goods Receipt (GR) is the process of physically receiving materials
+          into the warehouse and recording this receipt in the ERP system,
+          usually referencing a Purchase Order.
+        </p>
+        <ol>
+          <li>Enter T-code **MIGO**.</li>
+          <li>
+            Select "Goods Receipt" and "Purchase Order" in the transaction/event
+            type dropdown.
+          </li>
+          <li>Enter the Purchase Order number.</li>
+          <li>Check details, quantity, and storage location.</li>
+          <li>Post the goods receipt.</li>
+        </ol>
+        <div class="image-placeholder">
+          <p>
+            [Image: MIGO Goods Receipt Screen - Placeholder for a screenshot of
+            the MIGO screen for goods receipt against a PO]
+          </p>
+        </div>
+        <p class="image-caption">Figure 5: MIGO - Posting a Goods Receipt.</p>
+
+        <h3>4. Invoice Verification (T-code: MIRO)</h3>
+        <p>
+          Invoice Verification is the final step in the procurement process,
+          where vendor invoices are checked against purchase orders and goods
+          receipts.
+        </p>
+        <ol>
+          <li>Enter T-code **MIRO**.</li>
+          <li>
+            Enter the invoice date, posting date, and select the purchase order
+            reference.
+          </li>
+          <li>The system will propose quantities and amounts. Verify them.</li>
+          <li>Post the invoice.</li>
+        </ol>
+        <div class="alert alert-warning">
+          <span class="alert-icon">⚠️</span>
+          <div>
+            <strong>Important:</strong> Ensure a "3-way match" (PO, GR, Invoice)
+            before posting the invoice to avoid discrepancies.
+          </div>
+        </div>
+      </div>
+
+      ---
+
+      <div class="content-section">
+        <h2 id="inventory-management">Inventory Management</h2>
+        <p>
+          Inventory Management in MM deals with the management of material
+          stocks on a quantity and value basis.
+        </p>
+
+        <h3>Stock Overview (T-code: MMBE)</h3>
+        <p>
+          To view the current stock situation of a material across different
+          organizational levels (plant, storage location, batch):
+        </p>
+        <ol>
+          <li>Enter T-code **MMBE**.</li>
+          <li>Enter the material number and plant.</li>
+          <li>Execute to see the stock overview.</li>
+        </ol>
+        <div class="image-placeholder">
+          <p>
+            [Image: MMBE Stock Overview Screen - Placeholder for a screenshot of
+            the MMBE stock overview display]
+          </p>
+        </div>
+        <p class="image-caption">
+          Figure 6: MMBE - Displaying a material stock overview.
+        </p>
+
+        <h3>Goods Issue (T-code: MIGO)</h3>
+        <p>
+          Goods Issue (GI) is the process of withdrawing materials from stock
+          for various purposes, such as consumption, delivery to customer, or
+          transfer posting.
+        </p>
+        <ol>
+          <li>Enter T-code **MIGO**.</li>
+          <li>
+            Select "Goods Issue" and the appropriate reference (e.g., Cost
+            Center).
+          </li>
+          <li>Enter material, quantity, and movement type.</li>
+          <li>Post the goods issue.</li>
+        </ol>
+      </div>
+
+      ---
+
+      <div class="content-section">
+        <h2 id="reporting">Key Reports in MM</h2>
+        <p>
+          Several reports are available in MM to monitor procurement and
+          inventory performance.
+        </p>
+        <ul>
+          <li>
+            **List of Purchase Orders (T-code: ME2N / ME2M / ME2L):** Displays
+            purchase orders based on various selection criteria (material,
+            vendor, document number).
+          </li>
+          <li>
+            **Material Documents List (T-code: MB51):** Provides a list of all
+            material documents (GR, GI, transfers) for specific materials or
+            movement types.
+          </li>
+          <li>
+            **Stock Requirements List (T-code: MD04):** Shows current stock,
+            requirements, and receipts for a material, crucial for MRP.
+          </li>
+        </ul>
+        <div class="image-placeholder">
+          <p>
+            [Image: MM Report Example - Placeholder for a screenshot of a sample
+            ME2N or MB51 report output]
+          </p>
+        </div>
+        <p class="image-caption">
+          Figure 7: Example of a Purchase Order list report.
+        </p>
+      </div>
+
+      ---
+
+      <div class="content-section">
+        <h2 id="faqs">FAQs and Troubleshooting for MM</h2>
+        <p>
+          Here are some common questions and troubleshooting tips for using ERP
+          MM.
+        </p>
+
+        <h3>Common Issues</h3>
+        <ul>
+          <li>
+            <strong>Goods Receipt/Invoice Verification Errors:</strong> Check
+            the PO details, quantities, and dates. Ensure the PO is not fully
+            delivered or invoiced.
+          </li>
+          <li>
+            <strong>Stock Discrepancies:</strong> Verify if all goods movements
+            have been correctly posted. Conduct physical inventory if necessary.
+          </li>
+          <li>
+            <strong>Material Not Found:</strong> Check if the material number is
+            correct and exists in the specified plant/storage location.
+          </li>
+        </ul>
+
+        <h3>Who to Contact for Support?</h3>
+        <p>
+          For technical issues or advanced configuration questions, please
+          contact your IT support desk with the following information:
+        </p>
+        <ul>
+          <li>Your user ID</li>
+          <li>The T-code you were using</li>
+          <li>A detailed description of the issue</li>
+          <li>Any error messages (screenshot preferred)</li>
+        </ul>
+      </div>
     </template>
-    </main>
-</body>
+  </body>
 </html>
