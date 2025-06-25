@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Template with Side Navigation</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --border-color: #dee2e6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Navigation Styles */
+        .sidebar {
+            width: 280px;
+            background-color: var(--light-color);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px 0;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-bottom: 5px;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-left: 3px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            height: 100vh;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .content-section:last-child {
+            border-bottom: none;
+        }
+        
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            padding-top: 20px; /* For anchor link offset */
+            margin-top: -20px; /* For anchor link offset */
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 300px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .main-content {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Side Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h1>Site Navigation</h1>
+        </div>
+        <div class="sidebar-nav">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#section1" class="nav-link active">Introduction</a></li>
+                <li class="nav-item"><a href="#section2" class="nav-link">Getting Started</a></li>
+                <li class="nav-item"><a href="#section3" class="nav-link">Features</a></li>
+                <li class="nav-item"><a href="#section4" class="nav-link">Configuration</a></li>
+                <li class="nav-item"><a href="#section5" class="nav-link">Advanced Options</a></li>
+                <li class="nav-item"><a href="#section6" class="nav-link">Troubleshooting</a></li>
+                <li class="nav-item"><a href="#section7" class="nav-link">FAQs</a></li>
+                <li class="nav-item"><a href="#section8" class="nav-link">API Reference</a></li>
+                <li class="nav-item"><a href="#section9" class="nav-link">Examples</a></li>
+                <li class="nav-item"><a href="#section10" class="nav-link">Best Practices</a></li>
+                <li class="nav-item"><a href="#section11" class="nav-link">Community</a></li>
+                <li class="nav-item"><a href="#section12" class="nav-link">Resources</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <section id="section1" class="content-section">
+            <h2>Introduction</h2>
+            <p>Welcome to our modern documentation template. This layout features a scrollable left-hand navigation menu that stays visible as you browse through the content on the right.</p>
+            <p>The navigation is designed to be responsive and will adapt to smaller screens by moving to the top of the page.</p>
+        </section>
+        
+        <section id="section2" class="content-section">
+            <h2>Getting Started</h2>
+            <p>To begin using this template, simply copy the HTML and CSS code provided. The JavaScript functionality for smooth scrolling and active menu highlighting is included below.</p>
+            <p>You can customize the colors by modifying the CSS variables at the top of the style section.</p>
+        </section>
+        
+        <section id="section3" class="content-section">
+            <h2>Features</h2>
+            <p>This template includes several modern features:</p>
+            <ul>
+                <li>Scrollable navigation that stays fixed</li>
+                <li>Smooth scrolling to sections</li>
+                <li>Active menu item highlighting</li>
+                <li>Responsive design for all devices</li>
+                <li>Clean, modern aesthetic</li>
+            </ul>
+        </section>
+        
+        <section id="section4" class="content-section">
+            <h2>Configuration</h2>
+            <p>Customizing this template is straightforward. The main elements you might want to change are:</p>
+            <ol>
+                <li>The color scheme in the :root variables</li>
+                <li>The navigation items in the sidebar</li>
+                <li>The content sections in the main area</li>
+            </ol>
+        </section>
+        
+        <section id="section5" class="content-section">
+            <h2>Advanced Options</h2>
+            <p>For more advanced customization, you could:</p>
+            <ul>
+                <li>Add submenu items to the navigation</li>
+                <li>Implement a search function</li>
+                <li>Add a dark mode toggle</li>
+                <li>Include expandable/collapsible sections</li>
+            </ul>
+        </section>
+        
+        <section id="section6" class="content-section">
+            <h2>Troubleshooting</h2>
+            <p>If you encounter any issues with the template:</p>
+            <ul>
+                <li>Check for proper HTML structure</li>
+                <li>Ensure all IDs match the href attributes</li>
+                <li>Verify the CSS is properly linked</li>
+                <li>Test in multiple browsers</li>
+            </ul>
+        </section>
+        
+        <!-- Additional sections would continue here -->
+        <section id="section7" class="content-section">
+            <h2>FAQs</h2>
+            <p>Frequently asked questions would be listed here with their answers.</p>
+        </section>
+        
+        <section id="section8" class="content-section">
+            <h2>API Reference</h2>
+            <p>Detailed API documentation would go in this section.</p>
+        </section>
+        
+        <section id="section9" class="content-section">
+            <h2>Examples</h2>
+            <p>Code examples and demonstrations would be placed here.</p>
+        </section>
+        
+        <section id="section10" class="content-section">
+            <h2>Best Practices</h2>
+            <p>Guidelines and recommendations for optimal use.</p>
+        </section>
+        
+        <section id="section11" class="content-section">
+            <h2>Community</h2>
+            <p>Information about community support and contributions.</p>
+        </section>
+        
+        <section id="section12" class="content-section">
+            <h2>Resources</h2>
+            <p>Additional reading materials and external resources.</p>
+        </section>
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Scroll to the target section
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+        
+        // Highlight active menu item based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.content-section');
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - 100)) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
