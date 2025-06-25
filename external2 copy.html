@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integration Guide | Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <template data-content>
+        <div class="content-container">
+            <header class="content-header">
+                <h1>System Integration Guide</h1>
+                <p class="subtitle">Connect our platform with your existing tools and services</p>
+            </header>
+
+            <div class="content-card">
+                <div class="card-body">
+                    <h2>API Integration</h2>
+                    <p>Our comprehensive REST API allows you to connect with virtually any system and build custom integrations tailored to your needs.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>Developer Friendly</h3>
+                            <p>Clear documentation, code samples in 5 languages, and interactive API explorer make integration straightforward.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Secure Authentication</h3>
+                            <p>OAuth 2.0 and API key options with granular permissions ensure your data remains protected.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Webhook Support</h3>
+                            <p>Receive real-time notifications when important events occur in our system.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-block">
+                        <pre><code># Example Python API client
+import requests
+
+api_key = "your_api_key_here"
+endpoint = "https://api.example.com/v1/data"
+
+headers = {
+    "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json"
+}
+
+response = requests.get(endpoint, headers=headers)
+data = response.json()</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Integration Partners">
+                <div class="card-body">
+                    <h2>Pre-built Connectors</h2>
+                    <p>Save development time with our growing library of pre-built integrations for popular business applications.</p>
+                    
+                    <h3>Popular Integrations:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                        <div style="background: #f5f7fa; padding: 15px; border-radius: 6px; text-align: center;">
+                            <i class="fab fa-salesforce" style="font-size: 2rem; color: #00a1e0;"></i>
+                            <p>Salesforce</p>
+                        </div>
+                        <div style="background: #f5f7fa; padding: 15px; border-radius: 6px; text-align: center;">
+                            <i class="fab fa-microsoft" style="font-size: 2rem; color: #7fba00;"></i>
+                            <p>Microsoft 365</p>
+                        </div>
+                        <div style="background: #f5f7fa; padding: 15px; border-radius: 6px; text-align: center;">
+                            <i class="fab fa-google" style="font-size: 2rem; color: #ea4335;"></i>
+                            <p>Google Workspace</p>
+                        </div>
+                        <div style="background: #f5f7fa; padding: 15px; border-radius: 6px; text-align: center;">
+                            <i class="fab fa-slack" style="font-size: 2rem; color: #4a154b;"></i>
+                            <p>Slack</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Integration Process:</h3>
+                    <ol>
+                        <li>Select your application from our integration marketplace</li>
+                        <li>Authenticate with your credentials</li>
+                        <li>Configure field mappings and sync settings</li>
+                        <li>Test and activate the integration</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-body">
+                    <h2>Data Import/Export</h2>
+                    <p>Easily migrate your existing data into our platform or extract it for analysis in other systems.</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4>Supported Formats:</h4>
+                            <ul>
+                                <li>CSV</li>
+                                <li>Excel</li>
+                                <li>JSON</li>
+                                <li>XML</li>
+                                <li>SQL Dump</li>
+                            </ul>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4>Import Options:</h4>
+                            <ul>
+                                <li>Web interface upload</li>
+                                <li>SFTP automated transfer</li>
+                                <li>API streaming</li>
+                                <li>Email attachments</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p>"We migrated over 50,000 customer records from our legacy system in under an hour using the bulk import tools. The data validation features helped us identify and fix issues before they became problems."</p>
+                        <p class="testimonial-author">— Michael Chen, IT Manager at Retail Solutions Inc.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Need Help With Integration?</h2>
+                <p>Our integration specialists are available to assist with your implementation.</p>
+                <a href="#" class="cta-button">Contact Integration Support</a>
+            </div>
+        </div>
+    </template>
+</body>
+</html>
