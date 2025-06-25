@@ -4,7 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Template with Content Loading</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 0 20px 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: 100vh;
+        }
+
+        .sidebar-header h1 {
+            color: #2d3748;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .search-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .nav-link.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            color: #718096;
+            font-style: italic;
+            padding: 2rem;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .content-section p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 3rem;
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .error-message {
+            background: rgba(254, 226, 226, 0.9);
+            border: 1px solid #fed7d7;
+            color: #c53030;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                border-radius: 0;
+                max-height: none;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Left Side Navigation -->
@@ -21,7 +182,7 @@
                 <li class="nav-item"><a href="content-main.html#section2" class="nav-link">Getting Started</a></li>
                 <li class="nav-item"><a href="content-main.html#section3" class="nav-link">Features Overview</a></li>
                 <li class="nav-item"><a href="content-main.html#section4" class="nav-link">Configuration Options</a></li>
-                <li class="nav-item"><a href="external1.html" class="nav-link external-link" data-external>External Page 1</a></li>
+                <li class="nav-item"><a href="https://tensorbrickdocumentor.github.io/ksp.manual/content-main.html" class="nav-link external-link" data-external>KSP Manual</a></li>
                 <li class="nav-item"><a href="external2.html" class="nav-link external-link" data-external>External Page 2</a></li>
                 <li class="nav-item"><a href="content-main.html#section5" class="nav-link">Advanced Settings</a></li>
                 <li class="nav-item"><a href="content-main.html#section6" class="nav-link">Troubleshooting Guide</a></li>
@@ -81,7 +242,7 @@
                     hasResults = true;
                     
                     if (searchTerm !== '') {
-                        const regex = new RegExp(searchTerm, 'gi');
+                        const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
                         const highlightedText = originalText.replace(regex, match => 
                             `<span class="highlight">${match}</span>`
                         );
@@ -125,6 +286,16 @@
             });
         });
         
+        // Check if URL is external (different origin)
+        function isExternalUrl(url) {
+            try {
+                const urlObj = new URL(url, window.location.href);
+                return urlObj.origin !== window.location.origin;
+            } catch (e) {
+                return false;
+            }
+        }
+        
         // Main content loading function
         function loadContent(url, hash = '', pushState = true) {
             // Show loading message
@@ -133,10 +304,18 @@
             // Update active link
             updateActiveLink(url, hash);
             
-            // Fetch the content
+            // Check if this is an external URL
+            if (isExternalUrl(url)) {
+                loadExternalContent(url, hash, pushState);
+                return;
+            }
+            
+            // Fetch local content
             fetch(url)
                 .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
                     return response.text();
                 })
                 .then(html => {
@@ -148,44 +327,124 @@
                     let content;
                     if (doc.querySelector('template[data-content]')) {
                         content = doc.querySelector('template[data-content]').innerHTML;
+                    } else if (doc.querySelector('main')) {
+                        content = doc.querySelector('main').innerHTML;
                     } else {
                         content = doc.body.innerHTML;
                     }
                     
                     // Insert the content
-                    mainContent.innerHTML = content;
+                    mainContent.innerHTML = `<div class="content-section">${content}</div>`;
                     
                     // Update current state
                     currentContentUrl = url;
                     currentHash = hash;
                     
                     // Scroll to hash if needed
-                    if (hash) {
-                        const targetElement = mainContent.querySelector(hash);
-                        if (targetElement) {
-                            setTimeout(() => {
-                                targetElement.scrollIntoView({ behavior: 'smooth' });
-                            }, 100);
-                        }
-                    } else {
-                        window.scrollTo(0, 0);
-                    }
+                    handleHashScroll(hash);
                     
                     // Update browser history
                     if (pushState) {
-                        history.pushState({ url, hash }, '', hash ? `${url}${hash}` : url);
+                        const historyUrl = hash ? `${url}${hash}` : url;
+                        history.pushState({ url, hash }, '', historyUrl);
                     }
                 })
                 .catch(error => {
                     console.error('Error loading content:', error);
-                    mainContent.innerHTML = `
-                        <div class="content-section">
-                            <h2>Error Loading Content</h2>
-                            <p>Could not load: ${url}</p>
-                            <p>${error.message}</p>
-                        </div>
-                    `;
+                    showErrorMessage(url, error.message);
                 });
+        }
+        
+        // Load external content using iframe
+        function loadExternalContent(url, hash = '', pushState = true) {
+            const fullUrl = hash ? `${url}${hash}` : url;
+            
+            mainContent.innerHTML = `
+                <div class="content-section">
+                    <h2>External Content</h2>
+                    <p>Loading content from: <strong>${url}</strong></p>
+                    <div class="error-message" style="display: none;" id="iframeError">
+                        <strong>Note:</strong> If the content doesn't load, it may be due to CORS restrictions. 
+                        <a href="${fullUrl}" target="_blank" rel="noopener noreferrer">Click here to open in a new tab</a>.
+                    </div>
+                    <iframe 
+                        src="${fullUrl}" 
+                        class="iframe-container"
+                        onload="handleIframeLoad()"
+                        onerror="handleIframeError('${url}')">
+                    </iframe>
+                </div>
+            `;
+            
+            // Update current state
+            currentContentUrl = url;
+            currentHash = hash;
+            
+            // Update browser history
+            if (pushState) {
+                history.pushState({ url, hash }, '', fullUrl);
+            }
+            
+            // Set a timeout to show error message if iframe doesn't load
+            setTimeout(() => {
+                const iframe = mainContent.querySelector('iframe');
+                const errorDiv = document.getElementById('iframeError');
+                if (iframe && errorDiv) {
+                    try {
+                        // Try to access iframe content to test if it loaded
+                        iframe.contentDocument;
+                    } catch (e) {
+                        errorDiv.style.display = 'block';
+                    }
+                }
+            }, 5000);
+        }
+        
+        // Handle iframe load success
+        function handleIframeLoad() {
+            const errorDiv = document.getElementById('iframeError');
+            if (errorDiv) {
+                errorDiv.style.display = 'none';
+            }
+        }
+        
+        // Handle iframe load error
+        function handleIframeError(url) {
+            showErrorMessage(url, 'Content blocked by CORS policy or server error');
+        }
+        
+        // Show error message
+        function showErrorMessage(url, errorMessage) {
+            mainContent.innerHTML = `
+                <div class="content-section">
+                    <h2>Error Loading Content</h2>
+                    <div class="error-message">
+                        <strong>Could not load:</strong> ${url}<br>
+                        <strong>Error:</strong> ${errorMessage}
+                    </div>
+                    <p><strong>Possible solutions:</strong></p>
+                    <ul>
+                        <li>Check if the URL is correct and accessible</li>
+                        <li>The server may not allow cross-origin requests (CORS)</li>
+                        <li><a href="${url}" target="_blank" rel="noopener noreferrer">Try opening the link in a new tab</a></li>
+                        <li>Contact the site administrator if this is your content</li>
+                    </ul>
+                </div>
+            `;
+        }
+        
+        // Handle hash scrolling
+        function handleHashScroll(hash) {
+            if (hash) {
+                const targetElement = mainContent.querySelector(hash);
+                if (targetElement) {
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+            } else {
+                mainContent.scrollTop = 0;
+            }
         }
         
         // Update active navigation link
@@ -195,7 +454,7 @@
                 
                 const linkUrl = link.getAttribute('href');
                 if (link.hasAttribute('data-external')) {
-                    if (linkUrl === url) {
+                    if (linkUrl === url || linkUrl.startsWith(url)) {
                         link.classList.add('active');
                     }
                 } else {
@@ -208,6 +467,29 @@
                     }
                 }
             });
+        }
+        
+        // Create fallback content for when local files don't exist
+        function createFallbackContent() {
+            return `
+                <div class="content-section">
+                    <h2>Welcome to the Navigation Template</h2>
+                    <p>This template demonstrates a modern navigation system with content loading capabilities.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Responsive sidebar navigation</li>
+                        <li>Search functionality</li>
+                        <li>Dynamic content loading</li>
+                        <li>External content support via iframe</li>
+                        <li>CORS-aware error handling</li>
+                    </ul>
+                </div>
+            `;
+        }
+        
+        // Load default content if no specific content is requested
+        if (window.location.pathname.endsWith('.html') && !window.location.hash) {
+            mainContent.innerHTML = createFallbackContent();
         }
     </script>
 </body>
