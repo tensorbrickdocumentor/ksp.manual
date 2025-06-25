@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Template with Side Navigation</title>
+    <title>Modern Template with Searchable Navigation</title>
     <style>
         :root {
             --primary-color: #4a6fa5;
@@ -11,6 +11,7 @@
             --light-color: #f8f9fa;
             --dark-color: #343a40;
             --border-color: #dee2e6;
+            --search-highlight: #fff9c4;
         }
         
         * {
@@ -45,6 +46,33 @@
             border-bottom: 1px solid var(--border-color);
             background-color: var(--primary-color);
             color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .search-container {
+            padding: 15px;
+            background-color: white;
+            position: sticky;
+            top: 82px;
+            z-index: 5;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.2);
         }
         
         .sidebar-nav {
@@ -59,6 +87,7 @@
         
         .nav-item {
             margin-bottom: 5px;
+            transition: all 0.3s ease;
         }
         
         .nav-link {
@@ -74,6 +103,20 @@
             background-color: rgba(0, 0, 0, 0.05);
             border-left: 3px solid var(--primary-color);
             color: var(--primary-color);
+        }
+        
+        .no-results {
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            display: none;
+        }
+        
+        .highlight {
+            background-color: var(--search-highlight);
+            padding: 0 2px;
+            border-radius: 2px;
         }
         
         /* Main Content Styles */
@@ -105,8 +148,8 @@
         
         h2 {
             font-size: 1.8rem;
-            padding-top: 20px; /* For anchor link offset */
-            margin-top: -20px; /* For anchor link offset */
+            padding-top: 20px;
+            margin-top: -20px;
         }
         
         p {
@@ -122,13 +165,17 @@
             .sidebar {
                 width: 100%;
                 height: auto;
-                max-height: 300px;
+                max-height: 400px;
                 border-right: none;
                 border-bottom: 1px solid var(--border-color);
             }
             
             .main-content {
                 height: auto;
+            }
+            
+            .search-container {
+                top: 82px;
             }
         }
     </style>
@@ -139,21 +186,33 @@
         <div class="sidebar-header">
             <h1>Site Navigation</h1>
         </div>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search menu items..." id="searchInput">
+        </div>
         <div class="sidebar-nav">
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li class="nav-item"><a href="#section1" class="nav-link active">Introduction</a></li>
                 <li class="nav-item"><a href="#section2" class="nav-link">Getting Started</a></li>
-                <li class="nav-item"><a href="#section3" class="nav-link">Features</a></li>
-                <li class="nav-item"><a href="#section4" class="nav-link">Configuration</a></li>
-                <li class="nav-item"><a href="#section5" class="nav-link">Advanced Options</a></li>
-                <li class="nav-item"><a href="#section6" class="nav-link">Troubleshooting</a></li>
-                <li class="nav-item"><a href="#section7" class="nav-link">FAQs</a></li>
-                <li class="nav-item"><a href="#section8" class="nav-link">API Reference</a></li>
-                <li class="nav-item"><a href="#section9" class="nav-link">Examples</a></li>
+                <li class="nav-item"><a href="#section3" class="nav-link">Features Overview</a></li>
+                <li class="nav-item"><a href="#section4" class="nav-link">Configuration Options</a></li>
+                <li class="nav-item"><a href="#section5" class="nav-link">Advanced Settings</a></li>
+                <li class="nav-item"><a href="#section6" class="nav-link">Troubleshooting Guide</a></li>
+                <li class="nav-item"><a href="#section7" class="nav-link">Frequently Asked Questions</a></li>
+                <li class="nav-item"><a href="#section8" class="nav-link">API Documentation</a></li>
+                <li class="nav-item"><a href="#section9" class="nav-link">Code Examples</a></li>
                 <li class="nav-item"><a href="#section10" class="nav-link">Best Practices</a></li>
-                <li class="nav-item"><a href="#section11" class="nav-link">Community</a></li>
-                <li class="nav-item"><a href="#section12" class="nav-link">Resources</a></li>
+                <li class="nav-item"><a href="#section11" class="nav-link">Community Support</a></li>
+                <li class="nav-item"><a href="#section12" class="nav-link">Additional Resources</a></li>
+                <li class="nav-item"><a href="#section13" class="nav-link">Version History</a></li>
+                <li class="nav-item"><a href="#section14" class="nav-link">System Requirements</a></li>
+                <li class="nav-item"><a href="#section15" class="nav-link">Installation Guide</a></li>
+                <li class="nav-item"><a href="#section16" class="nav-link">User Permissions</a></li>
+                <li class="nav-item"><a href="#section17" class="nav-link">Security Considerations</a></li>
+                <li class="nav-item"><a href="#section18" class="nav-link">Performance Tips</a></li>
             </ul>
+            <div class="no-results" id="noResults">
+                No matching items found
+            </div>
         </div>
     </nav>
     
@@ -161,93 +220,156 @@
     <main class="main-content">
         <section id="section1" class="content-section">
             <h2>Introduction</h2>
-            <p>Welcome to our modern documentation template. This layout features a scrollable left-hand navigation menu that stays visible as you browse through the content on the right.</p>
-            <p>The navigation is designed to be responsive and will adapt to smaller screens by moving to the top of the page.</p>
+            <p>Welcome to our modern documentation template with search functionality. This enhanced version allows you to quickly find navigation items by typing in the search box.</p>
+            <p>The search feature highlights matching text in the menu items and hides non-matching items.</p>
         </section>
         
         <section id="section2" class="content-section">
             <h2>Getting Started</h2>
-            <p>To begin using this template, simply copy the HTML and CSS code provided. The JavaScript functionality for smooth scrolling and active menu highlighting is included below.</p>
-            <p>You can customize the colors by modifying the CSS variables at the top of the style section.</p>
+            <p>To use the search feature, simply type in the search box at the top of the navigation panel. The menu will filter in real-time as you type.</p>
+            <p>Matching text will be highlighted in yellow for easy identification.</p>
         </section>
         
         <section id="section3" class="content-section">
-            <h2>Features</h2>
-            <p>This template includes several modern features:</p>
+            <h2>Features Overview</h2>
+            <p>This template now includes:</p>
             <ul>
-                <li>Scrollable navigation that stays fixed</li>
-                <li>Smooth scrolling to sections</li>
-                <li>Active menu item highlighting</li>
-                <li>Responsive design for all devices</li>
-                <li>Clean, modern aesthetic</li>
-            </ul>
-        </section>
-        
-        <section id="section4" class="content-section">
-            <h2>Configuration</h2>
-            <p>Customizing this template is straightforward. The main elements you might want to change are:</p>
-            <ol>
-                <li>The color scheme in the :root variables</li>
-                <li>The navigation items in the sidebar</li>
-                <li>The content sections in the main area</li>
-            </ol>
-        </section>
-        
-        <section id="section5" class="content-section">
-            <h2>Advanced Options</h2>
-            <p>For more advanced customization, you could:</p>
-            <ul>
-                <li>Add submenu items to the navigation</li>
-                <li>Implement a search function</li>
-                <li>Add a dark mode toggle</li>
-                <li>Include expandable/collapsible sections</li>
-            </ul>
-        </section>
-        
-        <section id="section6" class="content-section">
-            <h2>Troubleshooting</h2>
-            <p>If you encounter any issues with the template:</p>
-            <ul>
-                <li>Check for proper HTML structure</li>
-                <li>Ensure all IDs match the href attributes</li>
-                <li>Verify the CSS is properly linked</li>
-                <li>Test in multiple browsers</li>
+                <li>Real-time search filtering</li>
+                <li>Text highlighting for matches</li>
+                <li>"No results" message when no matches are found</li>
+                <li>Sticky search box that stays visible while scrolling</li>
+                <li>Case-insensitive search</li>
             </ul>
         </section>
         
         <!-- Additional sections would continue here -->
+        <section id="section4" class="content-section">
+            <h2>Configuration Options</h2>
+            <p>Details about various configuration options would appear here.</p>
+        </section>
+        
+        <section id="section5" class="content-section">
+            <h2>Advanced Settings</h2>
+            <p>Information about advanced configuration settings.</p>
+        </section>
+        
+        <section id="section6" class="content-section">
+            <h2>Troubleshooting Guide</h2>
+            <p>Common issues and their solutions would be listed here.</p>
+        </section>
+        
         <section id="section7" class="content-section">
-            <h2>FAQs</h2>
-            <p>Frequently asked questions would be listed here with their answers.</p>
+            <h2>Frequently Asked Questions</h2>
+            <p>Answers to commonly asked questions would appear in this section.</p>
         </section>
         
         <section id="section8" class="content-section">
-            <h2>API Reference</h2>
-            <p>Detailed API documentation would go in this section.</p>
+            <h2>API Documentation</h2>
+            <p>Detailed API reference documentation.</p>
         </section>
         
         <section id="section9" class="content-section">
-            <h2>Examples</h2>
-            <p>Code examples and demonstrations would be placed here.</p>
+            <h2>Code Examples</h2>
+            <p>Practical examples of how to use the system.</p>
         </section>
         
         <section id="section10" class="content-section">
             <h2>Best Practices</h2>
-            <p>Guidelines and recommendations for optimal use.</p>
+            <p>Recommended approaches for optimal results.</p>
         </section>
         
         <section id="section11" class="content-section">
-            <h2>Community</h2>
-            <p>Information about community support and contributions.</p>
+            <h2>Community Support</h2>
+            <p>Information about community forums and support channels.</p>
         </section>
         
         <section id="section12" class="content-section">
-            <h2>Resources</h2>
-            <p>Additional reading materials and external resources.</p>
+            <h2>Additional Resources</h2>
+            <p>Links to external documentation and learning materials.</p>
+        </section>
+        
+        <!-- Additional sections for demonstration -->
+        <section id="section13" class="content-section">
+            <h2>Version History</h2>
+            <p>Release notes and version changelog.</p>
+        </section>
+        
+        <section id="section14" class="content-section">
+            <h2>System Requirements</h2>
+            <p>Minimum hardware and software requirements.</p>
+        </section>
+        
+        <section id="section15" class="content-section">
+            <h2>Installation Guide</h2>
+            <p>Step-by-step installation instructions.</p>
+        </section>
+        
+        <section id="section16" class="content-section">
+            <h2>User Permissions</h2>
+            <p>Information about different user roles and permissions.</p>
+        </section>
+        
+        <section id="section17" class="content-section">
+            <h2>Security Considerations</h2>
+            <p>Security best practices and recommendations.</p>
+        </section>
+        
+        <section id="section18" class="content-section">
+            <h2>Performance Tips</h2>
+            <p>How to optimize performance and speed.</p>
         </section>
     </main>
 
     <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const navItems = document.querySelectorAll('.nav-item');
+        const navMenu = document.getElementById('navMenu');
+        const noResults = document.getElementById('noResults');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            let hasResults = false;
+            
+            navItems.forEach(item => {
+                const link = item.querySelector('.nav-link');
+                const text = link.textContent.toLowerCase();
+                const originalText = link.dataset.originalText || link.textContent;
+                
+                // Store original text if we haven't already
+                if (!link.dataset.originalText) {
+                    link.dataset.originalText = originalText;
+                }
+                
+                if (searchTerm === '' || text.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                    
+                    // Highlight matching text
+                    if (searchTerm !== '') {
+                        const regex = new RegExp(searchTerm, 'gi');
+                        const highlightedText = originalText.replace(regex, match => 
+                            `<span class="highlight">${match}</span>`
+                        );
+                        link.innerHTML = highlightedText;
+                    } else {
+                        link.textContent = originalText;
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show/hide no results message
+            noResults.style.display = hasResults ? 'none' : 'block';
+            
+            // Reset active state if current active is hidden
+            const activeLink = document.querySelector('.nav-link.active');
+            if (activeLink && activeLink.parentElement.style.display === 'none') {
+                activeLink.classList.remove('active');
+            }
+        });
+        
         // Smooth scrolling for navigation links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -289,6 +411,14 @@
                 link.classList.remove('active');
                 if (link.getAttribute('href') === '#' + currentSection) {
                     link.classList.add('active');
+                    
+                    // Ensure the active item is visible (in case it was filtered)
+                    const navItem = link.parentElement;
+                    if (navItem.style.display === 'none') {
+                        // If filtered out, clear search to show all items
+                        searchInput.value = '';
+                        searchInput.dispatchEvent(new Event('input'));
+                    }
                 }
             });
         });
