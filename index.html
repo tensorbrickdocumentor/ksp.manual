@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Template with Searchable Navigation</title>
+    <title>Modern Template with External Content Loading</title>
     <style>
         :root {
             --primary-color: #4a6fa5;
@@ -105,6 +105,17 @@
             color: var(--primary-color);
         }
         
+        .external-link {
+            position: relative;
+        }
+        
+        .external-link::after {
+            content: "↗";
+            margin-left: 5px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        
         .no-results {
             padding: 20px;
             text-align: center;
@@ -156,6 +167,13 @@
             margin-bottom: 15px;
         }
         
+        .loading-message {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+            font-style: italic;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             body {
@@ -195,20 +213,12 @@
                 <li class="nav-item"><a href="#section2" class="nav-link">Getting Started</a></li>
                 <li class="nav-item"><a href="#section3" class="nav-link">Features Overview</a></li>
                 <li class="nav-item"><a href="#section4" class="nav-link">Configuration Options</a></li>
+                <li class="nav-item"><a href="external1.html" class="nav-link external-link" data-external>External Page 1</a></li>
+                <li class="nav-item"><a href="external2.html" class="nav-link external-link" data-external>External Page 2</a></li>
                 <li class="nav-item"><a href="#section5" class="nav-link">Advanced Settings</a></li>
                 <li class="nav-item"><a href="#section6" class="nav-link">Troubleshooting Guide</a></li>
                 <li class="nav-item"><a href="#section7" class="nav-link">Frequently Asked Questions</a></li>
                 <li class="nav-item"><a href="#section8" class="nav-link">API Documentation</a></li>
-                <li class="nav-item"><a href="#section9" class="nav-link">Code Examples</a></li>
-                <li class="nav-item"><a href="#section10" class="nav-link">Best Practices</a></li>
-                <li class="nav-item"><a href="#section11" class="nav-link">Community Support</a></li>
-                <li class="nav-item"><a href="#section12" class="nav-link">Additional Resources</a></li>
-                <li class="nav-item"><a href="#section13" class="nav-link">Version History</a></li>
-                <li class="nav-item"><a href="#section14" class="nav-link">System Requirements</a></li>
-                <li class="nav-item"><a href="#section15" class="nav-link">Installation Guide</a></li>
-                <li class="nav-item"><a href="#section16" class="nav-link">User Permissions</a></li>
-                <li class="nav-item"><a href="#section17" class="nav-link">Security Considerations</a></li>
-                <li class="nav-item"><a href="#section18" class="nav-link">Performance Tips</a></li>
             </ul>
             <div class="no-results" id="noResults">
                 No matching items found
@@ -217,37 +227,45 @@
     </nav>
     
     <!-- Main Content Area -->
-    <main class="main-content">
+    <main class="main-content" id="mainContent">
         <section id="section1" class="content-section">
             <h2>Introduction</h2>
-            <p>Welcome to our modern documentation template with search functionality. This enhanced version allows you to quickly find navigation items by typing in the search box.</p>
-            <p>The search feature highlights matching text in the menu items and hides non-matching items.</p>
+            <p>Welcome to our enhanced documentation template. This version includes the ability to load external HTML files in the main content area while maintaining all the previous functionality.</p>
+            <p>Notice the two external links in the navigation marked with an arrow icon (↗). These will load separate HTML files in this content area.</p>
         </section>
         
         <section id="section2" class="content-section">
             <h2>Getting Started</h2>
-            <p>To use the search feature, simply type in the search box at the top of the navigation panel. The menu will filter in real-time as you type.</p>
-            <p>Matching text will be highlighted in yellow for easy identification.</p>
+            <p>To use this template:</p>
+            <ol>
+                <li>Create your external HTML files (like external1.html and external2.html)</li>
+                <li>Add navigation links with the <code>data-external</code> attribute</li>
+                <li>Ensure your external files have the same styling or include the same CSS</li>
+            </ol>
         </section>
         
         <section id="section3" class="content-section">
             <h2>Features Overview</h2>
-            <p>This template now includes:</p>
+            <p>New features in this version:</p>
             <ul>
-                <li>Real-time search filtering</li>
-                <li>Text highlighting for matches</li>
-                <li>"No results" message when no matches are found</li>
-                <li>Sticky search box that stays visible while scrolling</li>
-                <li>Case-insensitive search</li>
+                <li>Load external HTML files in the main content area</li>
+                <li>Visual indicator for external links (arrow icon)</li>
+                <li>Smooth transition between internal and external content</li>
+                <li>Maintained all previous functionality (search, highlighting, etc.)</li>
+            </ul>
+        </section>
+        
+        <section id="section4" class="content-section">
+            <h2>Configuration Options</h2>
+            <p>For the external content loading:</p>
+            <ul>
+                <li>Add <code>data-external</code> attribute to external links</li>
+                <li>Use the <code>external-link</code> class for visual styling</li>
+                <li>Ensure external files are in the same directory or update paths</li>
             </ul>
         </section>
         
         <!-- Additional sections would continue here -->
-        <section id="section4" class="content-section">
-            <h2>Configuration Options</h2>
-            <p>Details about various configuration options would appear here.</p>
-        </section>
-        
         <section id="section5" class="content-section">
             <h2>Advanced Settings</h2>
             <p>Information about advanced configuration settings.</p>
@@ -266,57 +284,6 @@
         <section id="section8" class="content-section">
             <h2>API Documentation</h2>
             <p>Detailed API reference documentation.</p>
-        </section>
-        
-        <section id="section9" class="content-section">
-            <h2>Code Examples</h2>
-            <p>Practical examples of how to use the system.</p>
-        </section>
-        
-        <section id="section10" class="content-section">
-            <h2>Best Practices</h2>
-            <p>Recommended approaches for optimal results.</p>
-        </section>
-        
-        <section id="section11" class="content-section">
-            <h2>Community Support</h2>
-            <p>Information about community forums and support channels.</p>
-        </section>
-        
-        <section id="section12" class="content-section">
-            <h2>Additional Resources</h2>
-            <p>Links to external documentation and learning materials.</p>
-        </section>
-        
-        <!-- Additional sections for demonstration -->
-        <section id="section13" class="content-section">
-            <h2>Version History</h2>
-            <p>Release notes and version changelog.</p>
-        </section>
-        
-        <section id="section14" class="content-section">
-            <h2>System Requirements</h2>
-            <p>Minimum hardware and software requirements.</p>
-        </section>
-        
-        <section id="section15" class="content-section">
-            <h2>Installation Guide</h2>
-            <p>Step-by-step installation instructions.</p>
-        </section>
-        
-        <section id="section16" class="content-section">
-            <h2>User Permissions</h2>
-            <p>Information about different user roles and permissions.</p>
-        </section>
-        
-        <section id="section17" class="content-section">
-            <h2>Security Considerations</h2>
-            <p>Security best practices and recommendations.</p>
-        </section>
-        
-        <section id="section18" class="content-section">
-            <h2>Performance Tips</h2>
-            <p>How to optimize performance and speed.</p>
         </section>
     </main>
 
@@ -370,31 +337,94 @@
             }
         });
         
-        // Smooth scrolling for navigation links
+        // Function to load external content
+        function loadExternalContent(url, linkElement) {
+            const mainContent = document.getElementById('mainContent');
+            
+            // Show loading message
+            mainContent.innerHTML = '<div class="loading-message">Loading content...</div>';
+            
+            // Remove active class from all links
+            document.querySelectorAll('.nav-link').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to clicked link
+            linkElement.classList.add('active');
+            
+            // Fetch the external content
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(html => {
+                    // Create a temporary container to parse the HTML
+                    const tempContainer = document.createElement('div');
+                    tempContainer.innerHTML = html;
+                    
+                    // Extract the content you want (e.g., everything inside the body)
+                    const externalContent = tempContainer.querySelector('body').innerHTML;
+                    
+                    // Insert the content into our main area
+                    mainContent.innerHTML = externalContent;
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                })
+                .catch(error => {
+                    console.error('Error loading external content:', error);
+                    mainContent.innerHTML = `
+                        <div class="content-section">
+                            <h2>Error Loading Content</h2>
+                            <p>Could not load the requested page: ${url}</p>
+                            <p>${error.message}</p>
+                        </div>
+                    `;
+                });
+        }
+        
+        // Handle navigation clicks
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Remove active class from all links
-                document.querySelectorAll('.nav-link').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Scroll to the target section
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                // Check if this is an external link
+                if (this.hasAttribute('data-external')) {
+                    loadExternalContent(this.getAttribute('href'), this);
+                } else {
+                    // Internal link handling (same as before)
+                    
+                    // Remove active class from all links
+                    document.querySelectorAll('.nav-link').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Scroll to the target section
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
             });
         });
         
         // Highlight active menu item based on scroll position
+        // (Only for internal sections)
         window.addEventListener('scroll', function() {
+            // Don't run this if we're viewing external content
+            const mainContent = document.getElementById('mainContent');
+            if (!mainContent.querySelector('.content-section')) return;
+            
             const sections = document.querySelectorAll('.content-section');
             let currentSection = '';
             
@@ -408,6 +438,9 @@
             });
             
             document.querySelectorAll('.nav-link').forEach(link => {
+                // Skip external links for this highlighting
+                if (link.hasAttribute('data-external')) return;
+                
                 link.classList.remove('active');
                 if (link.getAttribute('href') === '#' + currentSection) {
                     link.classList.add('active');
@@ -421,6 +454,21 @@
                     }
                 }
             });
+        });
+        
+        // Initialize - check URL hash on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const targetLink = document.querySelector(`.nav-link[href="${hash}"]`);
+                if (targetLink) {
+                    if (targetLink.hasAttribute('data-external')) {
+                        loadExternalContent(targetLink.getAttribute('href'), targetLink);
+                    } else {
+                        targetLink.click();
+                    }
+                }
+            }
         });
     </script>
 </body>
