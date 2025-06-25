@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Template with Content Loading</title>
-     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <!-- Mobile menu toggle -->
     <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
@@ -20,39 +22,52 @@
         </div>
         <div class="sidebar-nav">
             <ul class="nav-menu" id="navMenu">
-                <li class="nav-item"><a href="#section1" class="nav-link active" data-section="section1">Introduction</a></li>
-                <li class="nav-item"><a href="#section2" class="nav-link" data-section="section2">Getting Started</a></li>
-                <li class="nav-item"><a href="#section3" class="nav-link" data-section="section3">Features Overview</a></li>
-                <li class="nav-item"><a href="#section4" class="nav-link" data-section="section4">Configuration Options</a></li>
-                <li class="nav-item"><a href="#section5" class="nav-link" data-section="section5">Advanced Settings</a></li>
-                <li class="nav-item"><a href="#section6" class="nav-link" data-section="section6">Troubleshooting Guide</a></li>
+                <li class="nav-item"><a href="#section1" class="nav-link active"
+                        data-section="section1">Introduction</a></li>
+                <li class="nav-item"><a href="#section2" class="nav-link" data-section="section2">Getting Started</a>
+                </li>
+                <li class="nav-item"><a href="#section3" class="nav-link" data-section="section3">Features Overview</a>
+                </li>
+                <li class="nav-item"><a href="#section4" class="nav-link" data-section="section4">Configuration
+                        Options</a></li>
+                <li class="nav-item"><a href="#section5" class="nav-link" data-section="section5">Advanced Settings</a>
+                </li>
+                <li class="nav-item"><a href="#section6" class="nav-link" data-section="section6">Troubleshooting
+                        Guide</a></li>
                 <li class="nav-item"><a href="#section7" class="nav-link" data-section="section7">API Reference</a></li>
                 <li class="nav-item"><a href="#section8" class="nav-link" data-section="section8">Examples</a></li>
-                <li class="nav-item"><a href="#section9" class="nav-link" data-section="section9">Best Practices</a></li>
+                <li class="nav-item"><a href="#section9" class="nav-link" data-section="section9">Best Practices</a>
+                </li>
                 <li class="nav-item"><a href="#section10" class="nav-link" data-section="section10">FAQ</a></li>
                 <li class="nav-item"><a href="#section11" class="nav-link" data-section="section11">Changelog</a></li>
-                <li class="nav-item"><a href="#section12" class="nav-link" data-section="section12">Contributing</a></li>
-                <li class="nav-item"><a href="https://tensorbrickdocumentor.github.io/ksp.manual/content-main.html" class="nav-link external-link" data-external>KSP Manual (External)</a></li>
-                <li class="nav-item"><a href="external2.html" class="nav-link external-link" data-external>External Page 2</a></li>
+                <li class="nav-item"><a href="#section12" class="nav-link" data-section="section12">Contributing</a>
+                </li>
+                <li class="nav-item"><a href="https://tensorbrickdocumentor.github.io/ksp.manual/content-main.html"
+                        class="nav-link external-link" data-external>KSP Manual (External)</a></li>
+                <li class="nav-item"><a href="external2.html" class="nav-link external-link" data-external>External Page
+                        2</a></li>
             </ul>
             <div class="no-results" id="noResults">
                 No matching items found
             </div>
         </div>
     </nav>
-    
+
     <!-- Main Content Area -->
     <main class="main-content" id="mainContent">
         <div class="content-section">
             <div class="section" id="section1">
                 <h2>Introduction</h2>
-                <p>Welcome to our comprehensive documentation system. This modern template provides an intuitive navigation experience with advanced content loading capabilities.</p>
-                <p>The sidebar navigation allows you to quickly jump between different sections and external resources while maintaining your current position in the menu.</p>
+                <p>Welcome to our comprehensive documentation system. This modern template provides an intuitive
+                    navigation experience with advanced content loading capabilities.</p>
+                <p>The sidebar navigation allows you to quickly jump between different sections and external resources
+                    while maintaining your current position in the menu.</p>
             </div>
 
             <div class="section" id="section2">
                 <h2>Getting Started</h2>
-                <p>To begin using this template, simply click on any navigation item in the left sidebar. The content will load seamlessly without disrupting your navigation experience.</p>
+                <p>To begin using this template, simply click on any navigation item in the left sidebar. The content
+                    will load seamlessly without disrupting your navigation experience.</p>
                 <h3>Key Features:</h3>
                 <ul>
                     <li>Persistent sidebar navigation</li>
@@ -77,7 +92,8 @@
 
             <div class="section" id="section4">
                 <h2>Configuration Options</h2>
-                <p>The template can be easily customized to fit your specific needs. Key configuration areas include:</p>
+                <p>The template can be easily customized to fit your specific needs. Key configuration areas include:
+                </p>
                 <ul>
                     <li>Navigation menu items and structure</li>
                     <li>Color scheme and styling</li>
@@ -184,43 +200,43 @@
         const noResults = document.getElementById('noResults');
         const mainContent = document.getElementById('mainContent');
         const sidebar = document.getElementById('sidebar');
-        
+
         // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Handle initial hash if present
             if (window.location.hash) {
                 scrollToSection(window.location.hash.substring(1));
             }
-            
+
             // Set up popstate handler for back/forward navigation
-            window.addEventListener('popstate', function(event) {
+            window.addEventListener('popstate', function (event) {
                 if (window.location.hash) {
                     scrollToSection(window.location.hash.substring(1));
                 }
             });
         });
-        
+
         // Search functionality
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             const searchTerm = this.value.toLowerCase();
             let hasResults = false;
-            
+
             navItems.forEach(item => {
                 const link = item.querySelector('.nav-link');
                 const text = link.textContent.toLowerCase();
                 const originalText = link.dataset.originalText || link.textContent;
-                
+
                 if (!link.dataset.originalText) {
                     link.dataset.originalText = originalText;
                 }
-                
+
                 if (searchTerm === '' || text.includes(searchTerm)) {
                     item.style.display = 'block';
                     hasResults = true;
-                    
+
                     if (searchTerm !== '') {
                         const regex = new RegExp(searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-                        const highlightedText = originalText.replace(regex, match => 
+                        const highlightedText = originalText.replace(regex, match =>
                             `<span class="highlight">${match}</span>`
                         );
                         link.innerHTML = highlightedText;
@@ -231,96 +247,183 @@
                     item.style.display = 'none';
                 }
             });
-            
+
             noResults.style.display = hasResults ? 'none' : 'block';
         });
-        
+
         // Handle navigation clicks
         document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const href = this.getAttribute('href');
                 const isExternal = this.hasAttribute('data-external');
-                
+
                 if (isExternal) {
-                    // Handle external links
-                    window.open(href, '_blank', 'noopener,noreferrer');
+                    // Handle external links - load in right pane
+                    loadExternalContent(href);
+                    updateActiveLink(null, this);
                     return;
                 }
-                
+
                 // Handle internal navigation
                 if (href.startsWith('#')) {
                     const sectionId = href.substring(1);
                     scrollToSection(sectionId);
-                    
+
                     // Update URL without page reload
                     history.pushState(null, null, href);
                 }
             });
         });
-        
+
         // Scroll to specific section
         function scrollToSection(sectionId) {
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 // Update active navigation link
                 updateActiveLink(sectionId);
-                
+
                 // Scroll to the section in the main content area
                 const mainContentTop = mainContent.scrollTop;
                 const targetTop = targetSection.offsetTop - 20; // 20px offset for better visual
-                
+
                 mainContent.scrollTo({
                     top: targetTop,
                     behavior: 'smooth'
                 });
             }
         }
-        
+
+        // Load external content in iframe
+        function loadExternalContent(url) {
+            // Show loading message
+            mainContent.innerHTML = '<div class="loading-message">Loading external content...</div>';
+
+            // Create iframe container
+            const iframeContent = `
+                <div class="content-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h2>External Content</h2>
+                        <a href="${url}" target="_blank" rel="noopener noreferrer" style="color: #667eea; text-decoration: none; font-size: 0.9rem;">
+                            Open in new tab ↗
+                        </a>
+                    </div>
+                    <p style="margin-bottom: 1rem; color: #718096;">Loading: <strong>${url}</strong></p>
+                    <iframe 
+                        src="${url}" 
+                        class="iframe-container"
+                        onload="handleIframeLoad()"
+                        onerror="handleIframeError('${url}')">
+                    </iframe>
+                </div>
+            `;
+
+            mainContent.innerHTML = iframeContent;
+
+            // Set a timeout to show error message if iframe doesn't load properly
+            setTimeout(() => {
+                const iframe = mainContent.querySelector('iframe');
+                if (iframe) {
+                    try {
+                        // Test if iframe loaded successfully
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        if (!iframeDoc || iframeDoc.readyState !== 'complete') {
+                            throw new Error('Content may be blocked');
+                        }
+                    } catch (e) {
+                        showIframeError(url);
+                    }
+                }
+            }, 5000);
+        }
+
+        // Handle iframe load success
+        function handleIframeLoad() {
+            console.log('External content loaded successfully');
+        }
+
+        // Handle iframe load error
+        function handleIframeError(url) {
+            showIframeError(url);
+        }
+
+        // Show iframe error message
+        function showIframeError(url) {
+            const errorContent = `
+                <div class="content-section">
+                    <h2>External Content</h2>
+                    <div class="error-message">
+                        <strong>Unable to load content:</strong> ${url}<br><br>
+                        <strong>Possible reasons:</strong>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>The website blocks embedding (X-Frame-Options)</li>
+                            <li>CORS policy restrictions</li>
+                            <li>Network connectivity issues</li>
+                            <li>The URL may not be accessible</li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 1rem;">
+                        <a href="${url}" target="_blank" rel="noopener noreferrer" 
+                           style="color: #667eea; text-decoration: none; font-weight: 500;">
+                            → Open in new tab instead
+                        </a>
+                    </p>
+                </div>
+            `;
+            mainContent.innerHTML = errorContent;
+        }
+
         // Update active navigation link
-        function updateActiveLink(sectionId) {
+        function updateActiveLink(sectionId, linkElement = null) {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-                
-                if (link.dataset.section === sectionId) {
-                    link.classList.add('active');
-                }
             });
+
+            if (linkElement) {
+                // For external links, activate the specific link element
+                linkElement.classList.add('active');
+            } else if (sectionId) {
+                // For internal sections, find by data-section
+                const targetLink = document.querySelector(`[data-section="${sectionId}"]`);
+                if (targetLink) {
+                    targetLink.classList.add('active');
+                }
+            }
         }
-        
+
         // Mobile menu toggle
         function toggleMobileMenu() {
             sidebar.classList.toggle('open');
         }
-        
+
         // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (window.innerWidth <= 768 && !sidebar.contains(e.target) && !e.target.classList.contains('mobile-menu-toggle')) {
                 sidebar.classList.remove('open');
             }
         });
-        
+
         // Handle window resize
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (window.innerWidth > 768) {
                 sidebar.classList.remove('open');
             }
         });
-        
-        // Intersection Observer for automatic active link updates
+
+        // Intersection Observer for automatic active link updates (only for internal sections)
         const observerOptions = {
             root: mainContent,
             rootMargin: '-20% 0px -70% 0px',
             threshold: 0
         };
-        
-        const observer = new IntersectionObserver(function(entries) {
+
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && entry.target.classList.contains('section')) {
                     const sectionId = entry.target.id;
                     updateActiveLink(sectionId);
-                    
+
                     // Update URL without adding to history
                     const newUrl = `#${sectionId}`;
                     if (window.location.hash !== newUrl) {
@@ -329,7 +432,7 @@
                 }
             });
         }, observerOptions);
-        
+
         // Observe all sections
         document.querySelectorAll('.section').forEach(section => {
             observer.observe(section);
