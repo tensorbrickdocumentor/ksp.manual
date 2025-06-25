@@ -1,30 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>External Page 1</title>
-    <style>
-        /* Include the same CSS as your main file or link to it */
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Features | Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="external-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="content-section">
-        <h2>External Content Page 1</h2>
-        <p>This content is loaded from an external HTML file.</p>
-        <p>The template maintains all styling and functionality even when loading external content.</p>
-        
-        <h3>Features of External Content</h3>
-        <ul>
-            <li>Seamless integration with main template</li>
-            <li>Maintains consistent styling</li>
-            <li>Works with the navigation system</li>
-            <li>Preserves all other functionality (search, etc.)</li>
-        </ul>
-    </div>
-    
-    <div class="content-section">
-        <h3>How It Works</h3>
-        <p>The content is fetched using JavaScript's Fetch API and inserted into the main content area.</p>
-        <p>Error handling ensures a good user experience if the file can't be loaded.</p>
-    </div>
-</body>
-</html>
+    <template data-content>
+        <div class="content-container">
+            <header class="content-header">
+                <h1>Advanced Features Guide</h1>
+                <p class="subtitle">Unlock the full potential of our platform with these powerful tools</p>
+            </header>
+
+            <div class="content-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Data Analytics Dashboard">
+                <div class="card-body">
+                    <h2>Advanced Analytics Dashboard</h2>
+                    <p>Our comprehensive analytics dashboard provides real-time insights into your data with customizable widgets and intuitive visualizations.</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Real-time Metrics</h3>
+                            <p>Monitor key performance indicators with up-to-the-second accuracy, ensuring you always have the latest data at your fingertips.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            <h3>Custom Reports</h3>
+                            <p>Create tailored reports with drag-and-drop functionality to focus on the metrics that matter most to your business.</p>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <h3>Smart Alerts</h3>
+                            <p>Configure automatic notifications for significant changes or thresholds being crossed in your data streams.</p>
+                        </div>
+                    </div>
+
+                    <div class="code-block">
+                        <pre><code>// Example API call to fetch analytics data
+fetch('/api/analytics', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        metrics: ['users', 'conversions'],
+        timeframe: 'last_7_days'
+    })
+})</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="card-body">
+                    <
