@@ -42,8 +42,15 @@
                 <li class="nav-item"><a href="#section11" class="nav-link" data-section="section11">Changelog</a></li>
                 <li class="nav-item"><a href="#section12" class="nav-link" data-section="section12">Contributing</a>
                 </li>
-                <li class="nav-item"><a href="https://tensorbrickdocumentor.github.io/ksp.manual/content-main.html" class="nav-link external-link" data-external>KSP Manual (External)</a></li>
-                <li class="nav-item"><a href="external2.html" class="nav-link external-link" data-external>External Page 2</a></li>
+                <li class="nav-item">
+                    <a href="https://tensorbrickdocumentor.github.io/ksp.manual/content-main.html"
+                        class="nav-link external-link" data-external="ksp-manual">KSP Manual (External)</a>
+                </li>
+                <li class="nav-item">
+                    <a href="external2.html" class="nav-link external-link" data-external="external2">External Page
+                        2</a>
+                </li>
+
             </ul>
             <div class="no-results" id="noResults">
                 No matching items found
@@ -292,7 +299,7 @@
             internalContent.style.display = 'block';
             externalContent.style.display = 'none';
             currentContentType = 'internal';
-            
+
             // Re-enable intersection observer for internal content
             enableIntersectionObserver();
         }
@@ -302,7 +309,7 @@
             internalContent.style.display = 'none';
             externalContent.style.display = 'block';
             currentContentType = 'external';
-            
+
             // Disable intersection observer when showing external content
             disableIntersectionObserver();
         }
@@ -316,21 +323,24 @@
 
                 // Fetch the external HTML file
                 const response = await fetch(url);
-                
+
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
+
                 const htmlContent = await response.text();
-                
+
                 // Parse the HTML to extract the body content
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlContent, 'text/html');
-                
+
                 // Extract the main content or body content
                 let contentToShow = '';
-                const mainElement = doc.querySelector('main') || doc.querySelector('.main-content') || doc.querySelector('body');
-                
+                let mainElement = doc.querySelector('main');
+                if (!mainElement) mainElement = doc.querySelector('.main-content');
+                if (!mainElement) mainElement = doc.body;
+
+
                 if (mainElement) {
                     contentToShow = mainElement.innerHTML;
                 } else {
@@ -447,7 +457,7 @@
         function createIntersectionObserver() {
             return new IntersectionObserver(function (entries) {
                 if (currentContentType !== 'internal') return;
-                
+
                 entries.forEach(entry => {
                     if (entry.isIntersecting && entry.target.classList.contains('section')) {
                         const sectionId = entry.target.id;
@@ -484,4 +494,5 @@
         enableIntersectionObserver();
     </script>
 </body>
+
 </html>

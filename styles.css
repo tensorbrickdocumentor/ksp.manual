@@ -266,3 +266,13 @@ body {
 .mobile-menu-toggle {
   display: none;
 }
+
+.external-content-wrapper {
+  padding: 2rem;
+  color: #fff;
+}
+
+.external-content-body {
+  padding-top: 1rem;
+}
+
