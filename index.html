@@ -42,8 +42,8 @@
                 <li class="nav-item"><a href="#section11" class="nav-link" data-section="section11">Changelog</a></li>
                 <li class="nav-item"><a href="#section12" class="nav-link" data-section="section12">Contributing</a>
                 </li>
-                <li class="nav-item"><a href="external1.html" class="nav-link external-link" data-external>External Page 1</a></li>
-                <li class="nav-item"><a href="external2.html" class="nav-link external-link" data-external>External Page 2</a></li>
+                <li class="nav-item"><a href="external1.html" class="nav-link external-link" data-external="external1">External Page 1</a></li>
+                <li class="nav-item"><a href="external2.html" class="nav-link external-link" data-external="external2">External Page 2</a></li>
             </ul>
             <div class="no-results" id="noResults">
                 No matching items found
@@ -53,7 +53,7 @@
 
     <!-- Main Content Area -->
     <main class="main-content" id="mainContent">
-        <div class="content-section">
+        <div class="content-section" id="internalContent">
             <div class="section" id="section1">
                 <h2>Introduction</h2>
                 <p>Welcome to our comprehensive documentation system. This modern template provides an intuitive
@@ -188,6 +188,11 @@
                 </ul>
             </div>
         </div>
+
+        <!-- External content container -->
+        <div class="content-section" id="externalContent" style="display: none;">
+            <!-- External content will be loaded here -->
+        </div>
     </main>
 
     <script>
@@ -198,6 +203,11 @@
         const noResults = document.getElementById('noResults');
         const mainContent = document.getElementById('mainContent');
         const sidebar = document.getElementById('sidebar');
+        const internalContent = document.getElementById('internalContent');
+        const externalContent = document.getElementById('externalContent');
+
+        // Track current content type
+        let currentContentType = 'internal';
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function () {
@@ -258,8 +268,9 @@
                 const isExternal = this.hasAttribute('data-external');
 
                 if (isExternal) {
-                    // Handle external links - load in right pane
-                    loadExternalContent(href);
+                    // Handle external links - load content directly
+                    const externalId = this.getAttribute('data-external');
+                    loadExternalContent(href, externalId);
                     updateActiveLink(null, this);
                     return;
                 }
@@ -267,6 +278,7 @@
                 // Handle internal navigation
                 if (href.startsWith('#')) {
                     const sectionId = href.substring(1);
+                    showInternalContent();
                     scrollToSection(sectionId);
 
                     // Update URL without page reload
@@ -275,15 +287,108 @@
             });
         });
 
+        // Show internal content
+        function showInternalContent() {
+            internalContent.style.display = 'block';
+            externalContent.style.display = 'none';
+            currentContentType = 'internal';
+            
+            // Re-enable intersection observer for internal content
+            enableIntersectionObserver();
+        }
+
+        // Show external content
+        function showExternalContent() {
+            internalContent.style.display = 'none';
+            externalContent.style.display = 'block';
+            currentContentType = 'external';
+            
+            // Disable intersection observer when showing external content
+            disableIntersectionObserver();
+        }
+
+        // Load external content via fetch
+        async function loadExternalContent(url, externalId) {
+            try {
+                // Show loading message
+                externalContent.innerHTML = '<div class="loading-message">Loading external content...</div>';
+                showExternalContent();
+
+                // Fetch the external HTML file
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const htmlContent = await response.text();
+                
+                // Parse the HTML to extract the body content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlContent, 'text/html');
+                
+                // Extract the main content or body content
+                let contentToShow = '';
+                const mainElement = doc.querySelector('main') || doc.querySelector('.main-content') || doc.querySelector('body');
+                
+                if (mainElement) {
+                    contentToShow = mainElement.innerHTML;
+                } else {
+                    contentToShow = htmlContent;
+                }
+
+                // Display the external content
+                externalContent.innerHTML = `
+                    <div class="external-content-wrapper">
+                        <div class="external-content-header">
+                            <h2>External Content: ${externalId}</h2>
+                            <div class="external-content-info">
+                                <span>Loaded from: ${url}</span>
+                            </div>
+                        </div>
+                        <div class="external-content-body">
+                            ${contentToShow}
+                        </div>
+                    </div>
+                `;
+
+                // Update URL to reflect external content
+                history.pushState(null, null, `#${externalId}`);
+
+            } catch (error) {
+                console.error('Error loading external content:', error);
+                externalContent.innerHTML = `
+                    <div class="content-section">
+                        <div class="external-content-header">
+                            <h2>External Content: ${externalId}</h2>
+                        </div>
+                        <div class="error-message">
+                            <strong>Unable to load content from:</strong> ${url}<br><br>
+                            <strong>Error:</strong> ${error.message}<br><br>
+                            <strong>Possible reasons:</strong>
+                            <ul style="margin-top: 0.5rem;">
+                                <li>File not found or incorrect path</li>
+                                <li>Network connectivity issues</li>
+                                <li>CORS policy restrictions (if running from file://)</li>
+                                <li>Server configuration issues</li>
+                            </ul>
+                        </div>
+                        <p style="margin-top: 1rem;">
+                            <strong>Tip:</strong> Make sure you're running this from a web server (http:// or https://) rather than opening the file directly in the browser.
+                        </p>
+                    </div>
+                `;
+            }
+        }
+
         // Scroll to specific section
         function scrollToSection(sectionId) {
             const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
+            if (targetSection && currentContentType === 'internal') {
                 // Update active navigation link
                 updateActiveLink(sectionId);
 
                 // Scroll to the section in the main content area
-                const mainContentTop = mainContent.scrollTop;
                 const targetTop = targetSection.offsetTop - 20; // 20px offset for better visual
 
                 mainContent.scrollTo({
@@ -291,85 +396,6 @@
                     behavior: 'smooth'
                 });
             }
-        }
-
-        // Load external content in iframe
-        function loadExternalContent(url) {
-            // Show loading message
-            mainContent.innerHTML = '<div class="loading-message">Loading external content...</div>';
-
-            // Create iframe container
-            const iframeContent = `
-                <div class="content-section">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <h2>External Content</h2>
-                        <a href="${url}" target="_blank" rel="noopener noreferrer" style="color: #667eea; text-decoration: none; font-size: 0.9rem;">
-                            Open in new tab ↗
-                        </a>
-                    </div>
-                    <p style="margin-bottom: 1rem; color: #718096;">Loading: <strong>${url}</strong></p>
-                    <iframe 
-                        src="${url}" 
-                        class="iframe-container"
-                        onload="handleIframeLoad()"
-                        onerror="handleIframeError('${url}')">
-                    </iframe>
-                </div>
-            `;
-
-            mainContent.innerHTML = iframeContent;
-
-            // Set a timeout to show error message if iframe doesn't load properly
-            setTimeout(() => {
-                const iframe = mainContent.querySelector('iframe');
-                if (iframe) {
-                    try {
-                        // Test if iframe loaded successfully
-                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                        if (!iframeDoc || iframeDoc.readyState !== 'complete') {
-                            throw new Error('Content may be blocked');
-                        }
-                    } catch (e) {
-                        showIframeError(url);
-                    }
-                }
-            }, 5000);
-        }
-
-        // Handle iframe load success
-        function handleIframeLoad() {
-            console.log('External content loaded successfully');
-        }
-
-        // Handle iframe load error
-        function handleIframeError(url) {
-            showIframeError(url);
-        }
-
-        // Show iframe error message
-        function showIframeError(url) {
-            const errorContent = `
-                <div class="content-section">
-                    <h2>External Content</h2>
-                    <div class="error-message">
-                        <strong>Unable to load content:</strong> ${url}<br><br>
-                        <strong>Possible reasons:</strong>
-                        <ul style="margin-top: 0.5rem;">
-                            <li>The website blocks embedding (X-Frame-Options)</li>
-                            <li>CORS policy restrictions</li>
-                            <li>Network connectivity issues</li>
-                            <li>The URL may not be accessible</li>
-                        </ul>
-                    </div>
-                    <p style="margin-top: 1rem;">
-                        <a href="${url}" target="_blank" rel="noopener noreferrer" 
-                           style="color: #667eea; text-decoration: none; font-weight: 500;">
-                            → Open in new tab instead
-                        </a>
-                    </p>
-                </div>
-            `;
-            mainContent.innerHTML = errorContent;
         }
 
         // Update active navigation link
@@ -416,25 +442,46 @@
             threshold: 0
         };
 
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.classList.contains('section')) {
-                    const sectionId = entry.target.id;
-                    updateActiveLink(sectionId);
+        let intersectionObserver = null;
 
-                    // Update URL without adding to history
-                    const newUrl = `#${sectionId}`;
-                    if (window.location.hash !== newUrl) {
-                        history.replaceState(null, null, newUrl);
+        function createIntersectionObserver() {
+            return new IntersectionObserver(function (entries) {
+                if (currentContentType !== 'internal') return;
+                
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target.classList.contains('section')) {
+                        const sectionId = entry.target.id;
+                        updateActiveLink(sectionId);
+
+                        // Update URL without adding to history
+                        const newUrl = `#${sectionId}`;
+                        if (window.location.hash !== newUrl) {
+                            history.replaceState(null, null, newUrl);
+                        }
                     }
-                }
-            });
-        }, observerOptions);
+                });
+            }, observerOptions);
+        }
 
-        // Observe all sections
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
+        function enableIntersectionObserver() {
+            if (!intersectionObserver) {
+                intersectionObserver = createIntersectionObserver();
+                // Observe all sections
+                document.querySelectorAll('.section').forEach(section => {
+                    intersectionObserver.observe(section);
+                });
+            }
+        }
+
+        function disableIntersectionObserver() {
+            if (intersectionObserver) {
+                intersectionObserver.disconnect();
+                intersectionObserver = null;
+            }
+        }
+
+        // Initialize intersection observer
+        enableIntersectionObserver();
     </script>
 </body>
 </html>
