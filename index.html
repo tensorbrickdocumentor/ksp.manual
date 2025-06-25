@@ -22,11 +22,11 @@
                 <li class="nav-item"><a href="#section1" class="nav-link">Introduction</a></li>
                 <li class="nav-item"><a href="#section2" class="nav-link">Getting Started</a></li>
                 <li class="nav-item"><a href="#section3" class="nav-link">Features Overview</a></li>
-                <li class="nav-item"><a href="#section4" class="nav-link">Configuration Options</a></li>
-                <li class="nav-item"><a href="#external1" class="nav-link external-link">External Page 1</a></li>
-                <li class="nav-item"><a href="#external2" class="nav-link external-link">External Page 2</a></li>
+                <li class="nav-item"><a href="#section4" class="nav-link">Configuration Options</a></li>                
                 <li class="nav-item"><a href="#section5" class="nav-link">Advanced Settings</a></li>
                 <li class="nav-item"><a href="#section6" class="nav-link">Troubleshooting Guide</a></li>
+                <li class="nav-item"><a href="#external1" class="nav-link external-link">External Page 1</a></li>
+                <li class="nav-item"><a href="#external2" class="nav-link external-link">External Page 2</a></li>
             </ul>
             <div class="no-results" id="noResults">
                 No matching items found
@@ -43,65 +43,99 @@
         // Current state management
         let currentContentUrl = 'content-main.html';
         let currentHash = '';
-        
+
         // DOM elements
         const searchInput = document.getElementById('searchInput');
         const navItems = document.querySelectorAll('.nav-item');
         const navMenu = document.getElementById('navMenu');
         const noResults = document.getElementById('noResults');
         const mainContent = document.getElementById('mainContent');
-        
+
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             // Handle direct links on page load
             handleInitialRouting();
-            
+
             // Set up popstate handler for back/forward navigation
             window.addEventListener('popstate', function(event) {
                 if (event.state) {
                     loadContent(event.state.url, event.state.hash, false);
+                } else {
+                    // For direct access or refresh where state might be null after a 404 redirect
+                    handleInitialRouting();
                 }
             });
         });
-        
-        // Handle initial routing based on URL hash
+
+        // Handle initial routing based on URL hash or path
         function handleInitialRouting() {
             const hash = window.location.hash;
-            
+            const path = window.location.pathname.replace(/\/ksp\.manual\/?/, ''); // Remove base path
+
+            // First, check for explicit hash links (e.g., #section1, #external1)
             if (hash.startsWith('#external')) {
-                // Handle external content links
                 const externalPage = hash.substring(1) + '.html';
                 loadContent(externalPage, '', true);
             } else if (hash) {
-                // Handle internal section links
                 loadContent('content-main.html', hash, true);
-            } else {
-                // Default load
+            }
+            // If no hash, try to infer from the path (for direct access to "clean" URLs)
+            else if (path && path !== '' && path !== 'index.html' && path !== '404.html') {
+                // This block handles cases like /ksp.manual/content-main or /ksp.manual/external1
+                // We need to map the path back to a hash-based internal link or an external page.
+
+                let foundMatch = false;
+                // Check if the path matches a known internal section (e.g., content-main)
+                if (path.startsWith('content-main')) {
+                    // If the path is content-main, default to #section1 or whatever makes sense
+                    const inferredHash = window.location.pathname.substring(window.location.pathname.lastIndexOf('#'));
+                    loadContent('content-main.html', inferredHash || '#section1', true); // Default to #section1 if no specific hash
+                    foundMatch = true;
+                } else {
+                    // Check if the path matches an external page (e.g., external1.html)
+                    document.querySelectorAll('.nav-link.external-link').forEach(link => {
+                        const linkHref = link.getAttribute('href'); // e.g., #external1
+                        const expectedPageName = linkHref.substring(1) + '.html'; // e.g., external1.html
+
+                        if (path === expectedPageName) {
+                            loadContent(expectedPageName, '', true);
+                            foundMatch = true;
+                        }
+                    });
+                }
+
+                if (!foundMatch) {
+                    // If the path doesn't match a known route, load default or show error
+                    loadContent('content-main.html', '', true);
+                }
+            }
+            else {
+                // Default load if no hash and no specific path
                 loadContent('content-main.html', '', true);
             }
         }
-        
+
         // Search functionality
         searchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
             let hasResults = false;
-            
+
             navItems.forEach(item => {
                 const link = item.querySelector('.nav-link');
                 const text = link.textContent.toLowerCase();
                 const originalText = link.dataset.originalText || link.textContent;
-                
+
                 if (!link.dataset.originalText) {
                     link.dataset.originalText = originalText;
                 }
-                
+
                 if (searchTerm === '' || text.includes(searchTerm)) {
                     item.style.display = 'block';
                     hasResults = true;
-                    
+
                     if (searchTerm !== '') {
                         const regex = new RegExp(searchTerm, 'gi');
-                        const highlightedText = originalText.replace(regex, match => 
+                        const highlightedText = originalText.replace(regex, match =>
                             `<span class="highlight">${match}</span>`
                         );
                         link.innerHTML = highlightedText;
@@ -112,23 +146,23 @@
                     item.style.display = 'none';
                 }
             });
-            
+
             noResults.style.display = hasResults ? 'none' : 'block';
-            
+
             const activeLink = document.querySelector('.nav-link.active');
             if (activeLink && activeLink.parentElement.style.display === 'none') {
                 activeLink.classList.remove('active');
             }
         });
-        
+
         // Handle navigation clicks
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 const hash = this.getAttribute('href');
                 const isExternal = this.classList.contains('external-link');
-                
+
                 if (isExternal) {
                     const externalPage = hash.substring(1) + '.html';
                     loadContent(externalPage, '', true);
@@ -137,41 +171,42 @@
                 }
             });
         });
-        
+
         // Main content loading function
         function loadContent(url, hash = '', pushState = true) {
             // Show loading message
             mainContent.innerHTML = '<div class="loading-message">Loading content...</div>';
-            
+
             // Update active link
             updateActiveLink(url, hash);
-            
+
             // Fetch the content
             fetch(url)
                 .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
+                    if (!response.ok) throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
                     return response.text();
                 })
                 .then(html => {
                     // Parse the HTML
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
-                    
+
                     // Get the content (either from body or specific element)
                     let content;
                     if (doc.querySelector('template[data-content]')) {
                         content = doc.querySelector('template[data-content]').innerHTML;
                     } else {
+                        // Fallback: If no template tag, try to get content from a specific div or the whole body
                         content = doc.body.innerHTML;
                     }
-                    
+
                     // Insert the content
                     mainContent.innerHTML = content;
-                    
+
                     // Update current state
                     currentContentUrl = url;
                     currentHash = hash;
-                    
+
                     // Scroll to hash if needed
                     if (hash) {
                         const targetElement = mainContent.querySelector(hash);
@@ -183,11 +218,21 @@
                     } else {
                         window.scrollTo(0, 0);
                     }
-                    
+
                     // Update browser history
                     if (pushState) {
-                        const newUrl = hash ? `${url.split('.html')[0]}${hash}` : url.split('.html')[0];
-                        history.pushState({ url, hash }, '', newUrl);
+                        // Construct the URL to push to history.
+                        // If it's content-main.html and has a hash, use the hash in the URL.
+                        // Otherwise, use the base filename (e.g., content-main, external1)
+                        let newUrlPath;
+                        if (url === 'content-main.html' && hash) {
+                             newUrlPath = `content-main${hash}`;
+                        } else if (url.endsWith('.html')) {
+                             newUrlPath = url.replace('.html', '');
+                        } else {
+                            newUrlPath = url; // Fallback for any other unexpected URLs
+                        }
+                        history.pushState({ url, hash }, '', newUrlPath);
                     }
                 })
                 .catch(error => {
@@ -201,37 +246,40 @@
                     `;
                 });
         }
-        
+
         // Update active navigation link
         function updateActiveLink(url, hash) {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-                
-                const linkHash = link.getAttribute('href');
+
+                const linkHref = link.getAttribute('href'); // e.g., #section1, #external1
                 const isExternal = link.classList.contains('external-link');
-                
+
                 if (isExternal) {
-                    if (url === linkHash.substring(1) + '.html') {
+                    const expectedUrlForExternal = linkHref.substring(1) + '.html'; // e.g., external1.html
+                    if (url === expectedUrlForExternal) {
                         link.classList.add('active');
                     }
                 } else {
-                    if (url === 'content-main.html' && linkHash === hash) {
+                    // For internal links, match the hash directly
+                    if (url === 'content-main.html' && linkHref === hash) {
                         link.classList.add('active');
                     }
                 }
             });
         }
-        
-        // Handle 404 redirects for GitHub Pages
-        if (window.location.pathname !== '/ksp.manual/' && window.location.pathname !== '/ksp.manual/index.html') {
-            const path = window.location.pathname.replace('/ksp.manual', '');
-            if (path.startsWith('/content-main')) {
-                window.location.hash = path.replace('/content-main', '#section1');
-            } else if (path.startsWith('/external')) {
-                window.location.hash = path.replace('.html', '');
-            }
-            window.location.replace('/ksp.manual/');
-        }
+
+        // *** IMPORTANT: REMOVE THE PREVIOUS 404 REDIRECT LOGIC ***
+        // The following block is problematic for SPAs on GitHub Pages
+        // if (window.location.pathname !== '/ksp.manual/' && window.location.pathname !== '/ksp.manual/index.html') {
+        //     const path = window.location.pathname.replace('/ksp.manual', '');
+        //     if (path.startsWith('/content-main')) {
+        //         window.location.hash = path.replace('/content-main', '#section1');
+        //     } else if (path.startsWith('/external')) {
+        //         window.location.hash = path.replace('.html', '');
+        //     }
+        //     window.location.replace('/ksp.manual/');
+        // }
     </script>
 </body>
 </html>
