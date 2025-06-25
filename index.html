@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Template with Content Loading</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Add base href for GitHub Pages subdirectory -->
-    <base href="/ksp.manual/">
 </head>
+
 <body>
+    <!-- Mobile menu toggle -->
+    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+
     <!-- Left Side Navigation -->
-    <nav class="sidebar">
+    <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h1>Site Navigation</h1>
         </div>
@@ -19,24 +22,177 @@
         </div>
         <div class="sidebar-nav">
             <ul class="nav-menu" id="navMenu">
-                <li class="nav-item"><a href="#section1" class="nav-link">Introduction</a></li>
-                <li class="nav-item"><a href="#section2" class="nav-link">Getting Started</a></li>
-                <li class="nav-item"><a href="#section3" class="nav-link">Features Overview</a></li>
-                <li class="nav-item"><a href="#section4" class="nav-link">Configuration Options</a></li>                
-                <li class="nav-item"><a href="#section5" class="nav-link">Advanced Settings</a></li>
-                <li class="nav-item"><a href="#section6" class="nav-link">Troubleshooting Guide</a></li>
-                <li class="nav-item"><a href="#external1" class="nav-link external-link">External Page 1</a></li>
-                <li class="nav-item"><a href="#external2" class="nav-link external-link">External Page 2</a></li>
+                <li class="nav-item"><a href="#section1" class="nav-link active"
+                        data-section="section1">Introduction</a></li>
+                <li class="nav-item"><a href="#section2" class="nav-link" data-section="section2">Getting Started</a>
+                </li>
+                <li class="nav-item"><a href="#section3" class="nav-link" data-section="section3">Features Overview</a>
+                </li>
+                <li class="nav-item"><a href="#section4" class="nav-link" data-section="section4">Configuration
+                        Options</a></li>
+                <li class="nav-item"><a href="#section5" class="nav-link" data-section="section5">Advanced Settings</a>
+                </li>
+                <li class="nav-item"><a href="#section6" class="nav-link" data-section="section6">Troubleshooting
+                        Guide</a></li>
+                <li class="nav-item"><a href="#section7" class="nav-link" data-section="section7">API Reference</a></li>
+                <li class="nav-item"><a href="#section8" class="nav-link" data-section="section8">Examples</a></li>
+                <li class="nav-item"><a href="#section9" class="nav-link" data-section="section9">Best Practices</a>
+                </li>
+                <li class="nav-item"><a href="#section10" class="nav-link" data-section="section10">FAQ</a></li>
+                <li class="nav-item"><a href="#section11" class="nav-link" data-section="section11">Changelog</a></li>
+                <li class="nav-item"><a href="#section12" class="nav-link" data-section="section12">Contributing</a>
+                </li>
+                <li class="nav-item"><a href="external1.html" class="nav-link external-link" data-external="external1">External Page 1</a></li>
+                <li class="nav-item"><a href="external2.html" class="nav-link external-link" data-external="external2">External Page 2</a></li>
             </ul>
             <div class="no-results" id="noResults">
                 No matching items found
             </div>
         </div>
     </nav>
-    
+
     <!-- Main Content Area -->
     <main class="main-content" id="mainContent">
-        <!-- Initial content will be loaded here -->
+        <div class="content-section" id="internalContent">
+            <div class="section" id="section1">
+                <h2>Introduction</h2>
+                <p>Welcome to our comprehensive documentation system. This modern template provides an intuitive
+                    navigation experience with advanced content loading capabilities.</p>
+                <p>The sidebar navigation allows you to quickly jump between different sections and external resources
+                    while maintaining your current position in the menu.</p>
+            </div>
+
+            <div class="section" id="section2">
+                <h2>Getting Started</h2>
+                <p>To begin using this template, simply click on any navigation item in the left sidebar. The content
+                    will load seamlessly without disrupting your navigation experience.</p>
+                <h3>Key Features:</h3>
+                <ul>
+                    <li>Persistent sidebar navigation</li>
+                    <li>Smooth scrolling between sections</li>
+                    <li>Search functionality with highlighting</li>
+                    <li>External content support</li>
+                    <li>Mobile-responsive design</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section3">
+                <h2>Features Overview</h2>
+                <p>This template includes several advanced features designed to enhance user experience:</p>
+                <ul>
+                    <li><strong>Fixed Sidebar:</strong> Navigation remains visible and accessible at all times</li>
+                    <li><strong>Scrollable Menu:</strong> Accommodates large numbers of navigation items</li>
+                    <li><strong>Content Sections:</strong> Organized content with smooth transitions</li>
+                    <li><strong>Search Integration:</strong> Real-time search with result highlighting</li>
+                    <li><strong>External Link Support:</strong> Seamless integration with external resources</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section4">
+                <h2>Configuration Options</h2>
+                <p>The template can be easily customized to fit your specific needs. Key configuration areas include:
+                </p>
+                <ul>
+                    <li>Navigation menu items and structure</li>
+                    <li>Color scheme and styling</li>
+                    <li>Content sections and layout</li>
+                    <li>Search behavior and filtering</li>
+                    <li>External link handling</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section5">
+                <h2>Advanced Settings</h2>
+                <p>For power users, advanced configuration options are available to fine-tune the template behavior:</p>
+                <ul>
+                    <li>Custom scrolling behavior</li>
+                    <li>Animation timing and effects</li>
+                    <li>Responsive breakpoints</li>
+                    <li>Content loading strategies</li>
+                    <li>Error handling customization</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section6">
+                <h2>Troubleshooting Guide</h2>
+                <p>Common issues and their solutions:</p>
+                <h3>Navigation Issues:</h3>
+                <ul>
+                    <li>Ensure all section IDs match navigation links</li>
+                    <li>Check for JavaScript errors in browser console</li>
+                    <li>Verify CSS is properly loaded</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section7">
+                <h2>API Reference</h2>
+                <p>Technical documentation for developers integrating with this template:</p>
+                <ul>
+                    <li>Navigation event handlers</li>
+                    <li>Content loading functions</li>
+                    <li>Search API methods</li>
+                    <li>Utility functions</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section8">
+                <h2>Examples</h2>
+                <p>Practical examples of how to implement and customize the template:</p>
+                <ul>
+                    <li>Basic setup and configuration</li>
+                    <li>Adding custom navigation items</li>
+                    <li>Integrating external content</li>
+                    <li>Customizing the search functionality</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section9">
+                <h2>Best Practices</h2>
+                <p>Recommended approaches for optimal performance and user experience:</p>
+                <ul>
+                    <li>Organize content in logical sections</li>
+                    <li>Use descriptive navigation labels</li>
+                    <li>Optimize for mobile devices</li>
+                    <li>Test across different browsers</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section10">
+                <h2>FAQ</h2>
+                <p>Frequently asked questions and answers:</p>
+                <h3>Q: How do I add new navigation items?</h3>
+                <p>A: Simply add new list items to the nav-menu ul element with appropriate href attributes.</p>
+                <h3>Q: Can I use this template with external content?</h3>
+                <p>A: Yes, the template supports both internal sections and external URLs.</p>
+            </div>
+
+            <div class="section" id="section11">
+                <h2>Changelog</h2>
+                <p>Recent updates and improvements:</p>
+                <ul>
+                    <li>Fixed sidebar positioning and scroll behavior</li>
+                    <li>Improved mobile responsiveness</li>
+                    <li>Enhanced search functionality</li>
+                    <li>Added support for external content</li>
+                </ul>
+            </div>
+
+            <div class="section" id="section12">
+                <h2>Contributing</h2>
+                <p>We welcome contributions to improve this template. Please follow these guidelines:</p>
+                <ul>
+                    <li>Test your changes thoroughly</li>
+                    <li>Maintain backward compatibility</li>
+                    <li>Document new features</li>
+                    <li>Follow the existing code style</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- External content container -->
+        <div class="content-section" id="externalContent" style="display: none;">
+            <!-- External content will be loaded here -->
+        </div>
     </main>
 
     <script>
