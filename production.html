@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>การผลิต</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <template data-content>
+      <div class="content-section">
+        <div class="content-header">
+          <h1>คู่มือผู้ใช้งานหน้าการผลิต</h1>
+        </div>
+
+        <h2>จัดกลุ่มสินค้าเพื่อผลิต</h2>
+        <p>การจัดกลุ่มสินค้าเพื่อส่งผลิต</p>
+        <h3>เตรียมการผลิต</h3>
+        <div class="image-illustration">
+          <img
+            src="./images/production/pre-manufacturing.png"
+            alt="pre-manufacturing"
+          />
+        </div>
+        <p class="image-caption">Figure 1: Pre manufacturing page</p>
+        <h4>ส่วนประกอบหลักของหน้า</h4>
+        <ul>
+          <li>
+            ปุ่ม + เพิ่มกลุ่ม: ใช้สร้างกลุ่มสินค้าใหม่ เพื่อรวม PO
+            เข้ากลุ่มผลิตเดียวกัน
+          </li>
+          <li>
+            ช่องค้นหา: ค้นหารายการ PO หรือรหัสสินค้าในแต่ละส่วน (จัดกลุ่มแล้ว /
+            ไม่ได้จัดกลุ่ม)
+          </li>
+          <li>
+            ปุ่มเครื่องมือ:
+            ใช้เข้าไปจัดการรายละเอียดของคำสั่งผลิตนั้นเพื่อเริ่มสั่งผลิต เช่น
+            แก้จำนวน, เลือกวัตถุดิบ, สร้าง layout
+          </li>
+          <li>
+            สถานะจุดสี:
+            <ul>
+              <li>จุดสีแดง - วงกลมเปล่า: ไม่มีงานก่อนหน้า</li>
+              <li>จุดสีแดง - วงกลมทึบ: มีงานก่อนหน้าแล้ว</li>
+              <li>จุดสีเขียว - วงกลมเปล่า: เป็นงานเดิม</li>
+              <li>จุดสีเขียว - วงกลมทึบ: เป็นงานใหม่</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3 id="producing">เริ่มสั่งผลิต</h3>
+        <div class="image-illustration">
+          <img src="./images/production/producing.png" alt="producing" />
+        </div>
+        <p class="image-caption">Figure 2: Producing page</p>
+        <h4>ส่วนประกอบหลัก</h4>
+        <h5>ด้านบน</h5>
+        <ul>
+          <li>ลูกค้าสั่งผลิต: จำนวนสินค้าที่ลูกค้าสั่ง</li>
+          <li>ชิ้นงานคงคลัง: จำนวนที่มีอยู่ในคลัง</li>
+          <li>ต้องสั่งผลิต: จำนวนที่ระบบคำนวณให้ต้องผลิตเพิ่มเติม</li>
+          <li>ใบพิมพ์เผื่อเสียตั้งต้น: จำนวนใบพิมพ์ที่เผื่อไว้เบื้องต้น</li>
+          <li>
+            ใบพิมพ์ที่ก่อนรวมเผื่อเสีย: จำนวนใบพิมพ์ที่ได้รวมเผื่อเสียแล้ว
+          </li>
+          <li>ใบพิมพ์ผลิตจริง: จำนวนใบพิมพ์ที่ใช้จริง</li>
+          <li>บริษัท: ชื่อบริษัทผู้ผลิต</li>
+          <li>งาน: ประเภทงาน ได้แก่ ด่วน และปกติ</li>
+        </ul>
+        <h5>ส่วนแสดงภาพแบบการตัด</h5>
+        <p>แสดงแผนภาพการจัดวางการตัดวัสดุลงบนแผ่นงาน</p>
+        <h5>รายละเอียดวัตถุดิบและการตัด</h5>
+        <ul>
+          <li>วัตถุดิบ: ประเภทวัสดุ เช่น กล่องแป้ง DBE 350g</li>
+          <li>คลังผู้จำหน่าย / คลัง KSP: จำนวนวัสดุในแต่ละคลัง</li>
+          <li>รูปแบบการตัด: เช่น วางแนวนอน 1 แถวบน</li>
+          <li>วัตถุดิบที่ใช้: จำนวนรีมหรือแผ่นที่ใช้จริง</li>
+          <li>ชิ้นงานผลิต: จำนวนที่ผลิต</li>
+          <li>ใบพิมพ์: จำนวนใบพิมพ์ที่ใช้</li>
+          <li>ขนาด: ขนาดแผ่นงานที่ใช้</li>
+          <li>ประสิทธิภาพ: คำนวณจากพื้นที่ใช้งานจริง เทียบกับทั้งหมด</li>
+          <li>Cavity: จำนวนชิ้นงานต่อ 1 ใบพิมพ์</li>
+        </ul>
+
+        <h3 id="producing">สร้างแบบและสั่งผลิต</h3>
+        <div class="image-illustration">
+          <img src="./images/production/layout-to-produce.png" alt="layout-to-produce" />
+        </div>
+        <p class="image-caption">Figure 3: Layout to produce page</p>
+
+        <h3 id="producing">เสร็จสิ้นการผลิต</h3>
+        <div class="image-illustration">
+          <img src="./images/production/production-completed.png" alt="production-completed" />
+        </div>
+        <p class="image-caption">Figure 4: Production completed page</p>
+      </div>
+
+      <div class="content-section">
+        <h2 id="daily-plan">แผนผลิตประจำวัน</h2>
+        <p>แผนผลิตประจำวัน (Daily Production Plan)</p>
+      </div>
+
+      <div class="content-section">
+        <h2 id="operation-plan">รายการผลิต</h2>
+        <p>รายการผลิต (operator)</p>
+      </div>
+
+      <div class="content-section">
+        <h2 id="print-list">รายการพิมพ์สติ๊กเกอร์</h2>
+        <p>รายละเอียดรูปแบบตารางการส่งออก</p>
+      </div>
+
+      <div class="content-section">
+        <h2 id="outsource">รายการจัดจ้างภายนอก</h2>
+        <p>แสดงรายการจัดจ้างภายนอก</p>
+      </div>
+
+      <div class="content-section">
+        <h2 id="cutting-list">รายการสั่งงานตัด</h2>
+        <p>รายการสั่งงานตัด</p>
+      </div>
+    </template>
+  </body>
+</html>
