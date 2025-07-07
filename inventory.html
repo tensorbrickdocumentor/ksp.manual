@@ -13,11 +13,82 @@
 
         <h2 id="materialg-matching">กำหนดวัสดุเพื่อผลิต</h2>
         <p>กำหนดหรือเตรียมรายการวัสดุเพื่อกำหนดให้กับชิ้นงาน</p>
+        <div class="image-illustration">
+          <img
+            src="./images/inventory/material-matching.png"
+            alt="material-matching"
+          />
+        </div>
+        <p class="image-caption">Figure 1: Material Matching page</p>
+        <h4>ส่วนประกอบหลักของหน้า</h4>
+        <ul>
+          <li>ค้นหาด้วยชื่อสินค้า: ช่องกรองรายการค้นหาด้วยชื่อของสินค้า</li>
+          <li>
+            แท็บการแสดงผล: แบ่งรายการออกเป็น 3 แท็บ
+            <ul>
+              <li>Matching – รายการที่ยังไม่กำหนด Batch</li>
+              <li>Matched – รายการที่กำหนด Batch แล้ว</li>
+              <li>Completed – รายการที่เสร็จสิ้นกระบวนการจับคู่</li>
+            </ul>
+          </li>
+          <li>
+            ปุ่ม + กำหนด Batch กระดาษ: ใช้เพื่อเข้าไปกำหนดว่า จะใช้ Batch
+            กระดาษใด สำหรับชิ้นงานนั้น โดยเมื่อคลิกแล้วจะมี modal ให้จับคู่วัสดุ
+          </li>
+        </ul>
+        <h3>จับคู่วัสดุ</h3>
+        <p>กำหนดหรือเตรียมรายการวัสดุเพื่อกำหนดให้กับชิ้นงาน</p>
+        <div class="image-illustration">
+          <img
+            src="./images/inventory/matching-modal.png"
+            alt="matching-modal"
+          />
+        </div>
+        <p class="image-caption">Figure 2: Matching Modal</p>
+        <h4>การเพิ่มรายการจับคู่</h4>
+        <ul>
+          <li>
+            เลือกเลขที่ผลิต (Batch)
+            <ul>
+              <li>คลิก dropdown "กรุณาเลือกเลขที่ผลิต"</li>
+              <li>เลือกจากรายการ Batch ที่พร้อมใช้งานด้านล่าง</li>
+            </ul>
+          </li>
+          <li>
+            ระบุจำนวนที่ต้องการจับคู่: กรอกจำนวนวัสดุที่ต้องการกำหนด เช่น 1 รีม
+            0 แผ่น
+          </li>
+          <li>
+            คลิก + เพิ่มรายการ: เพื่อบันทึกการจับคู่วัสดุ และหลังจากเพิ่มรายการ
+            ข้อมูลจะปรากฏด้านล่าง พร้อมแสดงวันที่และจำนวน
+          </li>
+        </ul>
       </div>
 
       <div class="content-section">
-        <h2 id="">คลังสินค้า</h2>
+        <h2 id="inventory">คลังสินค้า</h2>
         <p>จัดการคลังวัตถุดิบและคลังสินค้า</p>
+        <div class="image-illustration">
+          <img
+            src="./images/inventory/inventory.png"
+            alt="inventory"
+          />
+        </div>
+        <p class="image-caption">Figure 3: Inventory page</p>
+        <div class="image-illustration">
+          <img
+            src="./images/inventory/inventory-material-receiving.png"
+            alt="inventory-material-receiving"
+          />
+        </div>
+        <p class="image-caption">Figure 4: Material receiving page</p>
+        <div class="image-illustration">
+          <img
+            src="./images/inventory/inventory-purchase.png"
+            alt="inventory-purchase"
+          />
+        </div>
+        <p class="image-caption">Figure 5: Inventory purchase page</p>
       </div>
 
       <div class="content-section">
