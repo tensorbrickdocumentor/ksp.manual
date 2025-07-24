@@ -52,51 +52,262 @@
               Configuration Options
             </a>
           </li>
-          <li class="nav-item">
-            <a
-              href="sales.html"
-              class="nav-link external-link"
-              data-external
-            >
-              งานขาย
-            </a>
+          <!-- Sales (งานขาย) -->
+          <li class="nav-item" onclick="toggleGroup(this)">
+            <div class="nav-group" href="sales.html" data-external>งานขาย</div>
           </li>
-          <li class="nav-item">
-            <a
-              href="purchasing.html"
-              class="nav-link external-link"
-              data-external
-            >
+          <div class="sub-items">
+            <div class="nav-item">
+              <a href="sales.html" class="nav-link external-link" sub-item>
+                คำสั่งขาย
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="sales.html#quotation"
+                class="nav-link external-link"
+                sub-item
+              >
+                ใบเสนอราคา
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="sales.html#customer-order"
+                class="nav-link external-link"
+                sub-item
+              >
+                ลูกค้าสั่งผลิต
+              </a>
+            </div>
+          </div>
+          <!-- Purchasing (งานจัดซื้อ) -->
+          <li class="nav-item" onclick="toggleGroup(this)">
+            <div class="nav-group" href="purchasing.html" data-external>
               งานจัดซื้อ
-            </a>
+            </div>
           </li>
-          <li class="nav-item">
-            <a
-              href="production.html"
-              class="nav-link external-link"
-              data-external
-            >
+          <div class="sub-items">
+            <div class="nav-item">
+              <a href="purchasing.html" class="nav-link external-link" sub-item>
+                การรับสินค้า
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="purchasing.html#purchase-order"
+                class="nav-link external-link"
+                sub-item
+              >
+                คำสั่งซื้อ
+              </a>
+            </div>
+          </div>
+          <!-- Production (การผลิต) -->
+          <li class="nav-item" onclick="toggleGroup(this)">
+            <div class="nav-group" href="production.html" data-external>
               การผลิต
-            </a>
+            </div>
           </li>
-          <li class="nav-item">
-            <a
-              href="inventory.html"
-              class="nav-link external-link"
-              data-external
-            >
+          <div class="sub-items">
+            <div class="nav-item">
+              <a href="production.html" class="nav-link external-link" sub-item>
+                จัดกลุ่มสินค้าเพื่อผลิต
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="production.html#daily-plan"
+                class="nav-link external-link"
+                sub-item
+              >
+                แผนผลิตประจำวัน
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="production.html#operation-plan"
+                class="nav-link external-link"
+                sub-item
+              >
+                รายการผลิต
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="production.html#print-list"
+                class="nav-link external-link"
+                sub-item
+              >
+                รายการพิมพ์สติ๊กเกอร์
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="production.html#outsource"
+                class="nav-link external-link"
+                sub-item
+              >
+                รายการจัดจ้างภายนอก
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="production.html#cutting-list"
+                class="nav-link external-link"
+                sub-item
+              >
+                รายการสั่งงานตัด
+              </a>
+            </div>
+          </div>
+          <!-- Inventory (คลังสินค้า) -->
+          <li class="nav-item" onclick="toggleGroup(this)">
+            <div class="nav-group" href="inventory.html" data-external>
               คลังสินค้า
-            </a>
+            </div>
           </li>
-          <li class="nav-item">
-            <a
-              href="master-data.html"
-              class="nav-link external-link"
-              data-external
-            >
+          <div class="sub-items">
+            <div class="nav-item">
+              <a href="inventory.html" class="nav-link external-link" sub-item>
+                กำหนดวัสดุเพื่อผลิต
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="inventory.html#inventory"
+                class="nav-link external-link"
+                sub-item
+              >
+                คลังสินค้า
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="inventory.html#movement"
+                class="nav-link external-link"
+                sub-item
+              >
+                สรุปการเคลื่อนไหว
+              </a>
+            </div>
+          </div>
+          <!-- Master data (ข้อมูลตั้งต้น) -->
+          <li class="nav-item" onclick="toggleGroup(this)">
+            <div class="nav-group" href="master-data.html" data-external>
               ข้อมูลตั้งต้น
-            </a>
+            </div>
           </li>
+          <div class="sub-items">
+            <div class="nav-item">
+              <a
+                href="master-data.html"
+                class="nav-link external-link"
+                sub-item
+              >
+                ข้อมูลบริษัท
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#machine"
+                class="nav-link external-link"
+                sub-item
+              >
+                เครื่องจักร
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#tooling"
+                class="nav-link external-link"
+                sub-item
+              >
+                เครื่องมือประกอบ
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#store-management"
+                class="nav-link external-link"
+                sub-item
+              >
+                จัดการคลังสินค้า
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#supplier"
+                class="nav-link external-link"
+                sub-item
+              >
+                ผู้ผลิต
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#employee"
+                class="nav-link external-link"
+                sub-item
+              >
+                พนักงาน
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#customer-list"
+                class="nav-link external-link"
+                sub-item
+              >
+                รายชื่อลูกค้า
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#rm"
+                class="nav-link external-link"
+                sub-item
+              >
+                วัตถุดิบ
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#product"
+                class="nav-link external-link"
+                sub-item
+              >
+                สินค้า
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#export-schedule"
+                class="nav-link external-link"
+                sub-item
+              >
+                ตารางการส่งออก
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#express-sync"
+                class="nav-link external-link"
+                sub-item
+              >
+                รายการส่งออก Express
+              </a>
+            </div>
+            <div class="nav-item">
+              <a
+                href="master-data.html#bom"
+                class="nav-link external-link"
+                sub-item
+              >
+                สูตรการผลิต
+              </a>
+            </div>
+          </div>
           <li class="nav-item">
             <a
               href="external1.html"
@@ -385,7 +596,11 @@
           link.classList.remove("active");
 
           const linkUrl = link.getAttribute("href");
-          if (link.hasAttribute("data-external")) {
+          if (link.hasAttribute("sub-item")) {
+            if (linkUrl === url + hash) {
+              link.classList.add("active");
+            }
+          } else if (link.hasAttribute("data-external")) {
             if (linkUrl === url) {
               link.classList.add("active");
             }
@@ -403,6 +618,13 @@
             }
           }
         });
+        document.querySelectorAll(".nav-group").forEach((link) => {
+          link.classList.remove("active");
+          const linkUrl = link.getAttribute("href");
+          if (linkUrl === url) {
+            link.classList.add("active");
+          }
+        });
       }
 
       // Keyboard navigation
@@ -412,6 +634,10 @@
           searchInput.focus();
         }
       });
+
+      function toggleGroup(el) {
+        el.classList.toggle("active");
+      }
     </script>
   </body>
 </html>
