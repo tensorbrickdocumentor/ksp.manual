@@ -19,11 +19,9 @@
         <p class="image-caption">Figure 1: Receiving page</p>
         <h4>ส่วนประกอบของหน้า</h4>
         <ul>
+          <li>ค้นหาโดยเลข PO: ค้นหารายการด้วยเลขใบสั่งซื้อ (PO number)</li>
           <li>
-            ค้นหาโดยเลข PO: ค้นหารายการด้วยเลขใบสั่งซื้อ (PO number)
-          </li>
-          <li>
-            แท็บสถานะ: 
+            แท็บสถานะ:
             <ul>
               <li>กำลังดำเนินการ – รายการที่ยังรับสินค้าไม่ครบหรือยังไม่รับ</li>
               <li>รับเสร็จสิ้น – รายการที่รับสินค้าเรียบร้อยแล้ว</li>
@@ -32,28 +30,169 @@
         </ul>
         <h3>รายการรับวัสดุ</h3>
         <div class="image-illustration">
-          <img src="./images/purchasing/material-receiving.png" alt="material-receiving" />
+          <img
+            src="./images/purchasing/material-receiving.png"
+            alt="material-receiving"
+          />
         </div>
         <p class="image-caption">Figure 2: Material receiving page</p>
         <ul>
+          <li>ปุ่ม “รายการตรวจสอบ”: ใช้สำหรับเปิดรายละเอียดการตรวจสอบคุณภาพ</li>
           <li>
-            ปุ่ม “รายการตรวจสอบ”: ใช้สำหรับเปิดรายละเอียดการตรวจสอบคุณภาพ
+            ปุ่ม “+ รับสินค้า”: ใช้สำหรับเพิ่มรายการรับใหม่จาก PO เดิม
+            เมื่อกดจะเปิด modal สำหรับกรอกข้อมูล และประวัติการรับ
           </li>
-          <li>
-            ปุ่ม “+ รับสินค้า”: ใช้สำหรับเพิ่มรายการรับใหม่จาก PO เดิม เมื่อกดจะเปิด modal สำหรับกรอกข้อมูล และประวัติการรับ
-          </li>
+          <li>ปุ่ม “ยกเลิก”: ใช้สำหรับยกเลิกการรับวัสดุ</li>
           <li>ปุ่ม “บันทึก”: ใช้สำหรับบันทึกการรับวัสดุในหน้านี้</li>
         </ul>
         <div class="image-illustration">
-          <img src="./images/purchasing/receiving-history.png" alt="receiving-history" />
+          <img
+            src="./images/purchasing/receiving-history.png"
+            alt="receiving-history"
+          />
         </div>
         <p class="image-caption">Figure 3: Receiving history modal</p>
-        <p>เลือกคลังเก็บวัสดุ กรอกเลขที่ใบส่งของ เลขผลิต วันที่ออกใบส่งของ วันที่ผลิต วันสิ้นอายุ และจำนวน แล้วกดปุ่มรับ</p>
+        <p>
+          เลือกคลังเก็บวัสดุ กรอกเลขที่ใบส่งของ เลขผลิต วันที่ออกใบส่งของ
+          วันที่ผลิต วันสิ้นอายุ และจำนวน แล้วกดปุ่มรับ
+        </p>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/receiving-matched.png"
+            alt="receiving-matched"
+          />
+        </div>
+        <p class="image-caption">Figure 4: Receiving matched modal</p>
+        <p>
+          ถ้ากดยกเลิกการรับวัสดุที่ถูก matching แล้ว จะแสดงรายการที่ต้องไปยกเลิก
+          matching ก่อน จึงจะยกเลิกการรับนั้นได้
+        </p>
       </div>
 
       <div class="content-section">
         <h2 id="purchase-order">รายการคำสั่งซื้อ</h2>
         <p>เพิ่มหรือแก้ไขคำสั่งซื้อ</p>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/purchase-order.png"
+            alt="purchase-order"
+          />
+        </div>
+        <p class="image-caption">Figure 5: Purchase order page</p>
+        <p>
+          แสดงตารางรายการของคำสั่งซื้อ ซื่งประกอบด้วย เลขที่คำสั่งซื้อ
+          ผู้จำหน่าย วันที่สร้าง ประเภท และ สถานะ
+        </p>
+        <h3>รายละเอียดคำสั่งซื้อ</h3>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/purchase-order-detail.png"
+            alt="purchase-order-detail"
+          />
+        </div>
+        <p class="image-caption">Figure 6: Purchase order detail</p>
+        <p>แสดงรายละเอียดของคำสั่งซื้อ</p>
+        <ul>
+          <li>ปุ่ม “พิมพ์”: ใช้สำหรับพิมพ์เอกสารรายการการสั่งซื้อ</li>
+          <li>
+            รายละเอียดส่วนบน: ประกอบด้วย เลขที่คำสั่งซื้อ ประเภท ผู้จำหน่าย
+            ที่อยู่จัดจำหน่าย น้ำหนักขั้นต่ำในการจัดส่ง(กก.) น้ำหนักรวม(กก.)
+            ราคารวมสูงสุด ราคารวม และสถานะ
+          </li>
+          <li>รายละเอียดส่วนล่าง: แสดงรายการวัตถุดิบ และจำนวนที่สั่งซื้อ</li>
+        </ul>
+        <h3>เพิ่มคำสั่งซื้อ</h3>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/add-purchase-order.png"
+            alt="purchase-order-detail"
+          />
+        </div>
+        <p class="image-caption">Figure 7: Add purchase order</p>
+        <p>
+          กรอกรายละเอียดส่วนบน และเมื่อกดปุ่ม “+ รายการสั่งซื้อ” จะแสดง modal
+          รายการวัตถุดิบต่างกันตามประเภทของคำสั่งซื้อ
+          เมื่อเพิ่มรายการแล้วจึงกดบันทึก แล้วจะสามารถกดเสร็จสิ้นได้
+        </p>
+        <h3>ประเภทคำสั่งซื้อ</h3>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/purchase-order-type.png"
+            alt="purchase-order-type"
+          />
+        </div>
+        <p class="image-caption">Figure 8: Purchase order type</p>
+        <h3>เพิ่มรายการของประเภทสั่งสำรองวัตถุดิบ</h3>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/add-purchase-order-01-modal-material.png"
+            alt="add-purchase-order-01-modal-material"
+          />
+        </div>
+        <p class="image-caption">
+          Figure 9: Add purchase order material modal PO01
+        </p>
+        <p>กด + เลือกวัตถุดิบที่ต้องการ</p>
+        <h3>เพิ่มรายการของประเภทเรียกวัตถุดิบ</h3>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/add-purchase-order-02-modal-purchase-item.png"
+            alt="add-purchase-order-02-modal-purchase-item"
+          />
+        </div>
+        <p class="image-caption">
+          Figure 10: Add purchase order material modal PO02 purchase item
+        </p>
+        <p>
+          เลือกเป็น Purchase Item แล้วเลือก batch supplier และกด +
+          เลือกวัตถุดิบที่ต้องการ
+        </p>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/add-purchase-order-02-modal-material.png"
+            alt="add-purchase-order-02-modal-material"
+          />
+        </div>
+        <p class="image-caption">
+          Figure 11: Add purchase order material modal PO02 material
+        </p>
+        <p>
+          เลือกเป็น Material แล้วเลือก batch supplier และกด +
+          เลือกวัตถุดิบที่ต้องการ
+        </p>
+        <h3>เพิ่มรายการของประเภทสั่งซื้อวัตถุดิบ</h3>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/add-purchase-order-03-modal-purchase-item.png"
+            alt="add-purchase-order-03-modal-purchase-item"
+          />
+        </div>
+        <p class="image-caption">
+          Figure 12: Add purchase order material modal PO03 purchase item
+        </p>
+        <p>เลือกเป็น Purchase Item แล้วกด + เลือกวัตถุดิบที่ต้องการ</p>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/add-purchase-order-03-modal-material.png"
+            alt="add-purchase-order-03-modal-material"
+          />
+        </div>
+        <p class="image-caption">
+          Figure 13: Add purchase order material modal PO03 material
+        </p>
+        <p>เลือกเป็น Material แล้วกด + เลือกวัตถุดิบที่ต้องการ</p>
+        <h3>รายการที่ต้องสั่งซื้อ</h3>
+        <div class="image-illustration">
+          <img
+            src="./images/purchasing/purchase-item.png"
+            alt="purchase-item"
+          />
+        </div>
+        <p class="image-caption">Figure 14: Purchase item tab</p>
+        <p>
+          แสดงตารางรายการที่ต้องสั่งซื้อ ซื่งประกอบด้วย รหัส ชื่อวัสดุ
+          ชื่อสินค้า เลขผลิต. จำนวน และวันที่สร้าง
+        </p>
       </div>
     </template>
   </body>
